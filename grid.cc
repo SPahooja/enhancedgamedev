@@ -65,3 +65,5 @@ ostream &operator<<(ostream &out, const Grid &g) {
 	out << "Next:           Next:" << endl;
 	return out;
 }
+
+Grid::~Grid() {}
