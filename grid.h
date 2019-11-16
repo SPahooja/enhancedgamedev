@@ -6,8 +6,8 @@
 #include <vector>
 
 class Cell;
+class Piece;
 class GraphicDisplay {};
-class Piece {};
 class Level {};
 
 class Grid {
