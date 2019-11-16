@@ -13,8 +13,13 @@ class Grid {
 	std::vector<Piece*> moves;
 	Level *lp;
 	GraphicDisplay *gd;
+	int highscore;
+	int curscore;
 	public:
-		Grid();
-
-
+		Grid(int lev = 1);
+		void nextBlock();
+		void moveBlock(std::string dir);
+		void rotateBlock(bool clock);
+		void dropBlock();
+	friend std::ostream &operator<<(std::ostream &out, const Grid &g);
 }
