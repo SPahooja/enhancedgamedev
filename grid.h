@@ -24,10 +24,12 @@ class Grid {
 	GraphicDisplay *gd;
 	public:
 		Grid(int lev1 = 1, int lev2 = 1);
-		void nextBlock();
-		void moveBlock(std::string dir);
-		void rotateBlock(bool clock);
-		void dropBlock();
+		void nextBlock(int p);
+		void moveBlock(int p, std::string dir);
+		void rotateBlock(int p, bool clock);
+		void dropBlock(int p);
+		void chngLevel(int p, bool up);
+		~Grid();
 	friend std::ostream &operator<<(std::ostream &out, const Grid &g);
 };
 
