@@ -80,3 +80,21 @@ void Grid::nextBlock(int p) {
 		move2.push_back(p);
 	}
 }
+
+void  Grid::rotateBlock(int p, bool clock) {
+	if (p==1) {
+		move1[move1.size()-1]->rotate(clock);
+	}
+	else {
+		move2[move2.size()-1]->rotate(clock);
+	}
+}
+
+void Grid::moveBlock(int p, string dir) {
+	if (p==1) {
+		move1[move1.size()-1]->movepos(dir);
+	}
+	else {
+		move2[move2.size()-1]->movepos(dir);
+	}
+}

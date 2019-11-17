@@ -16,4 +16,12 @@ PieceI::PieceI(vector<vector<Cell*>> &t) {
 
 PieceI::~PieceI() {}
 
-void PieceI::rotate(bool cl) {}
+void PieceI::rotate(bool cl) {
+	for (int i=1; i < 4; i++) {
+		(this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+		(this->ptr)[i] = cl?(this->ptr)[i-1]->getDown():(this->ptr)[i-1]->getUp();
+		(this->ptr)[i]->setdisp('I');
+		(this->ptr)[i]->setbl(true);
+	}
+}
