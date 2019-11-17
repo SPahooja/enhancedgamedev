@@ -21,6 +21,8 @@ class Cell {
 		void setdisp(char c);
 		bool getbl() const;
 		void setbl(bool b);
+		int getrow() const;
+		int getcol() const;
 };
 
 #endif

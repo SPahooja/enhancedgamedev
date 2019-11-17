@@ -98,3 +98,12 @@ void Grid::moveBlock(int p, string dir) {
 		move2[move2.size()-1]->movepos(dir);
 	}
 }
+
+void  Grid::dropBlock(int p) {
+        if (p==1) {
+                move1[move1.size()-1]->drop();
+        }
+        else {
+                move2[move2.size()-1]->drop();
+        }
+}

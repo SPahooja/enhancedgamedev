@@ -10,13 +10,13 @@ void Piece::movepos(string dir) {
 	bool condition;
 	for (int i=0; i < 4; i++) {
 		if (dir=="left") {
-			condition = ((ptr[i]->getLeft()==nullptr)||((ptr[i]->getLeft()->getdisp()!=this->disp)&&(ptr[i]->getLeft()->getdisp()!=' ')));
+			condition = ((ptr[i]->getLeft()==nullptr)||((ptr[i]->getLeft()->getbl())&&(ptr[i]->getLeft()!=ptr[0])&&(ptr[i]->getLeft()!=ptr[1])&&(ptr[i]->getLeft()!=ptr[2])&&(ptr[i]->getLeft()!=ptr[3])));
 		}
 		else if (dir=="right") {
-			condition = ((ptr[i]->getRight()==nullptr)||((ptr[i]->getRight()->getdisp()!=this->disp)&&(ptr[i]->getRight()->getdisp()!=' ')));
+			condition = ((ptr[i]->getRight()==nullptr)||((ptr[i]->getRight()->getbl())&&(ptr[i]->getRight()!=ptr[0])&&(ptr[i]->getRight()!=ptr[1])&&(ptr[i]->getRight()!=ptr[2])&&(ptr[i]->getRight()!=ptr[3])));
 		}
 		else {
-			condition = ((ptr[i]->getDown()==nullptr)||((ptr[i]->getDown()->getdisp()!=this->disp)&&(ptr[i]->getDown()->getdisp()!=' ')));
+			condition = ((ptr[i]->getDown()==nullptr)||((ptr[i]->getDown()->getbl())&&(ptr[i]->getDown()!=ptr[0])&&(ptr[i]->getDown()!=ptr[1])&&(ptr[i]->getDown()!=ptr[2])&&(ptr[i]->getDown()!=ptr[3])));
 		}
 		if (condition) {
 			return;
@@ -44,7 +44,7 @@ void Piece::movepos(string dir) {
 void Piece::drop() {
 	while (true) {
 		for (int i=0; i < 4; i++) {
-			if ((ptr[i]->getDown()==nullptr)||(ptr[i]->getDown()->getbl())) {
+			if ((ptr[i]->getDown()==nullptr)||((ptr[i]->getDown()->getbl())&&(ptr[i]->getDown()!=ptr[0])&&(ptr[i]->getDown()!=ptr[1])&&(ptr[i]->getDown()!=ptr[2])&&(ptr[i]->getDown()!=ptr[3]))) {
 				return;
 			}
 		}
