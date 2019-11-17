@@ -41,6 +41,24 @@ void Piece::movepos(string dir) {
 	}
 }
 
+void Piece::rowdel() {
+	for (int i=0; i < 4; i++) {
+		if (ptr[i]!=nullptr) {
+			ptr[i]->setdisp(' ');
+			ptr[i]->setbl(false);
+		}
+	}
+	for (int i=0; i < 4; i++) {
+		if (ptr[i]!=nullptr) {
+			ptr[i] = ptr[i]->getDown();
+		}
+		if (ptr[i]!=nullptr) {
+			ptr[i]->setdisp(this->disp);
+			ptr[i]->setbl(true);
+		}
+	}
+}
+
 void Piece::drop() {
 	while (true) {
 		for (int i=0; i < 4; i++) {

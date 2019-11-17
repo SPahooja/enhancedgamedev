@@ -48,6 +48,18 @@ void PieceI::rotate(bool cl) {
 		}
 	}
 	if (anchor==0) {
+		Cell* temp = (this->ptr)[0];
+		for (int i=1; i<4; i++) {
+			if (vert) {
+                                temp = cl?temp->getRight():temp->getLeft();
+                        }
+                        else {
+                                temp = cl?temp->getDown():temp->getUp();
+                        }
+			if (temp->getbl()) {
+				return;
+			}
+		}
 		for (int i=1; i<4; i++) {
 			(this->ptr)[i]->setdisp(' ');
 			(this->ptr)[i]->setbl(false);
@@ -62,6 +74,18 @@ void PieceI::rotate(bool cl) {
 		}
 	}
 	if (anchor==3) {
+		Cell* temp = (this->ptr)[3];
+                for (int i=3; i>=0; i--) {
+                        if (vert) {
+                                temp = cl?temp->getRight():temp->getLeft();
+                        }
+                        else {
+                                temp = cl?temp->getDown():temp->getUp();
+                        }
+                        if (temp->getbl()) {
+                                return;
+                        }
+                }
                 for (int i=2; i>=0; i--) {
 			(this->ptr)[i]->setdisp(' ');
                         (this->ptr)[i]->setbl(false);

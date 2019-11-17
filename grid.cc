@@ -102,8 +102,30 @@ void Grid::moveBlock(int p, string dir) {
 void  Grid::dropBlock(int p) {
         if (p==1) {
                 move1[move1.size()-1]->drop();
+		for (int j=17; j>=0; j--) {
+			for (int i=0; i < 11; i++) {
+				if (!(map1[17][i]->getbl())) {
+					return;
+				}
+			}
+			curscore1 += (lev1 + 1) * (lev1 + 1);
+			for (int i=0; i < move1.size(); i++) {
+				move1[i]->rowdel();
+			}
+		}
         }
         else {
                 move2[move2.size()-1]->drop();
+		for (int j=17; j>=0; j--) {
+			for (int i=0; i < 11; i++) {
+                        	if (!(map2[17][i]->getbl())) {
+                                	return;
+                        	}
+                	}
+			curscore2 += (lev2 + 1) * (lev2 + 1);
+                	for (int i=0; i < move2.size(); i++) {
+                       		move2[i]->rowdel();
+                	}
+		}
         }
 }

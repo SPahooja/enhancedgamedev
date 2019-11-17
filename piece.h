@@ -14,6 +14,7 @@ class Piece {
 		std::vector<Cell*> ptr;
 	public:
 		void movepos(std::string dir);
+		void rowdel();
 		void drop();
 		virtual void rotate(bool cl) = 0;
 		virtual ~Piece() = 0;
