@@ -56,6 +56,9 @@ void Piece::rowdel() {
 			ptr[i]->setdisp(this->disp);
 			ptr[i]->setbl(true);
 		}
+		if (ptr[i]==nullptr) {
+			(this->valid)-=1;
+		}
 	}
 }
 

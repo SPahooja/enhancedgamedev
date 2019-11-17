@@ -1,6 +1,7 @@
 #include "grid.h"
 #include "piece.h"
 #include "pieceI.h"
+#include "pieceO.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -68,15 +69,30 @@ ostream &operator<<(ostream &out, const Grid &g) {
 	return out;
 }
 
-Grid::~Grid() {}
+Grid::~Grid() {
+	for (int i=0; i < 18; i++) {
+		for (int j=0; j < 11; j++) {
+			delete map1[i][j];
+			delete map2[i][j];
+		}
+	}
+	for (int i=0; i < move1.size(); i++) {
+		delete move1[i];
+	}
+	for (int j=0; j < move2.size(); j++) {
+		delete move2[j];
+	}
+	// delete lp1;
+	// delete lp2;
+}
 
 void Grid::nextBlock(int p) {
 	if (p==1) {
-		Piece *p = new PieceI(map1);
+		Piece *p = new PieceO(map1);
 		move1.push_back(p);
 	}
 	else {
-		Piece *p = new PieceI(map2);
+		Piece *p = new PieceO(map2);
 		move2.push_back(p);
 	}
 }
