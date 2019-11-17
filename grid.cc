@@ -88,11 +88,11 @@ Grid::~Grid() {
 
 void Grid::nextBlock(int p) {
 	if (p==1) {
-		Piece *p = new PieceO(map1);
+		Piece *p = new PieceI(map1);
 		move1.push_back(p);
 	}
 	else {
-		Piece *p = new PieceO(map2);
+		Piece *p = new PieceI(map2);
 		move2.push_back(p);
 	}
 }
