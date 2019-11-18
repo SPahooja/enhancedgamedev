@@ -17,24 +17,28 @@ vector<string> autocommand(string s) {
 	string actualcom = s.substr(realcom);
 	int pos = 0;
 	int max = 0;
-	bool uniq = true;
+	bool uniq = false;
 	for (int i=0; i<coms.size(); i++) {
 		int tempcount = 0;
-		for (int j=0; j<coms[i].length(); j++) {
-			if (actualcom[j]==coms[i][j]) {
-				++tempcount;
-			}
-			else {
-				break;
+		if (actualcom.length() <= coms[i].length()) {
+			for (int j=0; j<actualcom.length(); j++) {
+				if (actualcom[j]==coms[i][j]) {
+					++tempcount;
+				}
+				else {
+					break;
+				}
 			}
 		}
-		if (tempcount > max) {
-			max = tempcount;
-			pos = i;
-			uniq = true;
-		}
-		else if ((tempcount == max)&&(tempcount>0)) {
-			uniq = false;
+		if (tempcount==actualcom.length()) {
+			if (tempcount > max) {
+				max = tempcount;
+				pos = i;
+				uniq = true;
+			}
+			else if ((tempcount == max)&&(tempcount>0)) {
+				uniq = false;
+			}
 		}
 	}
 	if (!uniq) {
@@ -43,7 +47,7 @@ vector<string> autocommand(string s) {
 	string num = s.substr(0, realcom);
 	istringstream sock(num);
 	int n;
-	if (sock >> n) {
+	if ((sock >> n)&&(pos<=7)) {
 		vector<string> rep(n, coms[pos]);
 		return rep;
 	}
@@ -53,3 +57,15 @@ vector<string> autocommand(string s) {
 		return rep;
 	}
 }
+
+/*
+int main() {
+	string s;
+	while (cin >> s) {
+		vector<string> tp = autocommand(s);
+		for (int i=0; i < tp.size(); i++) {
+			cout << tp[i] << endl;
+		}
+	}
+}
+*/
