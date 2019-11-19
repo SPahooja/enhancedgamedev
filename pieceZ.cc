@@ -5,7 +5,7 @@
 
 using namespace std;
 
-PieceS::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
+PieceZ::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
     this->valid = 4;
     this->disp = 'Z';
     for (int i = 0; i <= 1; ++i) {
@@ -20,7 +20,7 @@ PieceS::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
     }
 }
 
-PieceS::~PieceZ() {}
+PieceZ::~PieceZ() {}
 
 void PieceZ::rotate(bool cl) {
     bool vert;
