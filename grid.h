@@ -7,8 +7,8 @@
 
 class Cell;
 class Piece;
+class Level;
 class GraphicDisplay {};
-class Level {};
 
 class Grid {
 	std::vector<std::vector<Cell*>> map1;
@@ -23,7 +23,7 @@ class Grid {
 	int lev2;
 	GraphicDisplay *gd;
 	public:
-		Grid(int lev1 = 1, int lev2 = 1);
+		Grid();
 		void nextBlock(int p);
 		void moveBlock(int p, std::string dir);
 		void rotateBlock(int p, bool clock);

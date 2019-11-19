@@ -49,6 +49,9 @@ void PieceS::rotate(bool cl) {
     for (int i = 0; i <= 1; ++i) {              // Checking for empty cells
         if (!vert) {
             temp3 = temp3->getUp();
+	    if (temp3->getbl()) {
+		    return;
+	    }
         } else {
             if (i == 0) {
                 temp0 = temp0->getLeft();
@@ -60,46 +63,44 @@ void PieceS::rotate(bool cl) {
                     return;
             }
         }
-        if (temp3->getbl())
-            return;
     }
 
     if (vert) {
         (this->ptr)[3]->setdisp(' ');
         (this->ptr)[3]->setbl(false);
-        (this->ptr)[3]->getDown();
-        (this->ptr)[3]->getDown();
+        (this->ptr)[3] = (this->ptr)[3]->getDown();
+        (this->ptr)[3] = (this->ptr)[3]->getDown();
         (this->ptr)[3]->setdisp(this->disp);
         (this->ptr)[3]->setbl(true);
         (this->ptr)[0]->setdisp(' ');
         (this->ptr)[0]->setbl(false);
-        (this->ptr)[0]->getUp();
-        (this->ptr)[0]->getRight();
+        (this->ptr)[0] = (this->ptr)[0]->getUp();
+        (this->ptr)[0] = (this->ptr)[0]->getRight();
         (this->ptr)[0]->setdisp(this->disp);
         (this->ptr)[0]->setbl(true);
         (this->ptr)[2]->setdisp(' ');
         (this->ptr)[2]->setbl(false);
-        (this->ptr)[2]->getDown();
-        (this->ptr)[2]->getRight();
+        (this->ptr)[2] = (this->ptr)[2]->getDown();
+        (this->ptr)[2] = (this->ptr)[2]->getRight();
         (this->ptr)[2]->setdisp(this->disp);
         (this->ptr)[2]->setbl(true);
     } else {
         (this->ptr)[3]->setdisp(' ');
         (this->ptr)[3]->setbl(false);
-        (this->ptr)[3]->getUp();
-        (this->ptr)[3]->getUp();
+        (this->ptr)[3] = (this->ptr)[3]->getUp();
+        (this->ptr)[3] = (this->ptr)[3]->getUp();
         (this->ptr)[3]->setdisp(this->disp);
         (this->ptr)[3]->setbl(true);
         (this->ptr)[2]->setdisp(' ');
         (this->ptr)[2]->setbl(false);
-        (this->ptr)[2]->getLeft();
-        (this->ptr)[2]->getUp();
+        (this->ptr)[2] = (this->ptr)[2]->getLeft();
+        (this->ptr)[2] = (this->ptr)[2]->getUp();
         (this->ptr)[2]->setdisp(this->disp);
         (this->ptr)[2]->setbl(true);
         (this->ptr)[0]->setdisp(' ');
         (this->ptr)[0]->setbl(false);
-        (this->ptr)[0]->getDown();
-        (this->ptr)[0]->getLeft();
+        (this->ptr)[0] = (this->ptr)[0]->getDown();
+        (this->ptr)[0] = (this->ptr)[0]->getLeft();
         (this->ptr)[0]->setdisp(this->disp);
         (this->ptr)[0]->setbl(true);
     }

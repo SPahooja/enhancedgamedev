@@ -3,6 +3,9 @@
 #include "pieceI.h"
 #include "pieceO.h"
 #include "pieceT.h"
+#include "pieceZ.h"
+#include "pieceS.h"
+#include "level0.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -27,11 +30,22 @@ void setmap(vector<vector<Cell*>> &mp) {
         }
 }
 
-Grid::Grid(int lev1, int lev2) {
+Level* makeLevel(int n) {
+	Level *lo = nullptr;
+	if (n==0) {
+		lo = new LevelZero();
+	}
+	// More cases here
+	return lo;
+}
+
+Grid::Grid() {
 	setmap(this->map1);
 	setmap(this->map2);
-	this->lev1 = lev1;
-	this->lev2 = lev2;
+	this->lev1 = 0;
+	this->lev2 = 0;
+	this->lp1 = makeLevel(lev1);
+	this->lp2 = makeLevel(lev2);
 	this->curscore1 = 0;
 	this->curscore2 = 0;
 }
@@ -83,18 +97,20 @@ Grid::~Grid() {
 	for (int j=0; j < move2.size(); j++) {
 		delete move2[j];
 	}
-	// delete lp1;
-	// delete lp2;
+	delete lp1;
+	delete lp2;
 }
 
 void Grid::nextBlock(int p) {
+	cout << p << endl;
 	if (p==1) {
-		Piece *p = new PieceT(map1);
-		move1.push_back(p);
+		Piece *pc = lp1->nextPiece(p, map1);
+		move1.push_back(pc);
 	}
 	else {
-		Piece *p = new PieceT(map2);
-		move2.push_back(p);
+		cout << "correct" << endl;
+		Piece *pc = lp2->nextPiece(p, map2);
+		move2.push_back(pc);
 	}
 }
 

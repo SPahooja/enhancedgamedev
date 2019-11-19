@@ -6,7 +6,7 @@
 
 class PieceS: public Piece {
     public:
-        PieceS(std::vector<Std::vector<Cell*>> &t);
+        PieceS(std::vector<std::vector<Cell*>> &t);
         void rotate(bool cl);
         ~PieceS();
 };

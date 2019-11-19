@@ -42,14 +42,26 @@ vector<string> autocommand(string s) {
 		}
 	}
 	if (!uniq) {
-		throw invalid_argument("Command cannot be uniquely identified");
+		vector<string> rep;
+		return rep;
 	}
 	string num = s.substr(0, realcom);
 	istringstream sock(num);
 	int n;
-	if ((sock >> n)&&(pos<=7)) {
-		vector<string> rep(n, coms[pos]);
-		return rep;
+	if (sock >> n) {
+		if (n==0) {
+			vector<string> rep;
+			return rep;
+		}
+		else if (pos<=7) {
+			vector<string> rep(n, coms[pos]);
+			return rep;
+		}
+		else {
+			vector<string> rep;
+			rep.push_back(coms[pos]);
+			return rep;
+		}
 	}
 	else {
 		vector<string> rep;
