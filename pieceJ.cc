@@ -156,3 +156,92 @@ void PieceJ::rotate(bool cl){
 		(this->ptr)[2] = (this->ptr)[1]->getDown();
 		(this->ptr)[3] = (this->ptr)[2]->getDown();
 	}
+
+	if(vert && tipup && cl){
+		Cell *temp = (this->ptr)[2];
+		for(int i = 0; i < 2; ++i){
+			temp = temp->getRight();
+			if(temp->getbl()){
+				return;
+			}
+		}
+		temp = temp->getRight();
+		if(temp->getbl()){return;}
+
+		(this->ptr)[0]->setdisp(' ');
+		(this->ptr)[0]->setbl(false);
+		(this->ptr)[1]->setdisp(' ');
+		(this->ptr)[1]->setbl(false);
+		(this->ptr)[3]->setdisp(' ');
+		(this->ptr)[3]->setbl(false);
+		(this->ptr)[0] = (((this->ptr)[2]->getRight())->getRight())->getDown();
+		(this->ptr)[1] = ((this->ptr)[2]->getRight())->getRight();
+		(this->ptr)[2] = (this->ptr)[2]->getRight();
+		(this->ptr)[3] = (this->ptr)[2]->getLeft();
+		for(int i = 0; i < 3; ++i){
+			(this->ptr)[i]->setdisp(this->disp);
+			(this->ptr)[i]->setbl(true);
+		}
+	}
+
+	if((!vert) && (!tipup) && cl){
+		Cell *temp = ((this->ptr)[2])->getUp();
+		if(temp->getbl()){return;}
+		temp = ((this->ptr)[2])->getDown();
+		if(temp->getbl()){return;}
+		temp = ((this->ptr)[3])->getDown();
+		if(temp->getbl()){return;}
+		
+		for(int i = 0 ; i <= 3; ++i){
+			(this->ptr)[i]->setdisp(' ');
+			(this->ptr)[i]->setbl(false);
+		}
+		(this->ptr)[0] = ((this->ptr)[3])->getDown();
+		(this->ptr)[1] = ((this->ptr)[2])->getDown();
+		(this->ptr)[3] = ((this->ptr)[2])->getUp();
+
+		for(int i = 0; i <= 3; ++i){
+			(this->ptr)[i]->setdisp(this->disp);
+			(this->ptr)[i]->setbl(true);
+		}
+	}
+
+	if(vert && (!tipup) && cl){
+		Cell *temp = ((this->ptr)[0])->getUp();
+		if(temp->getbl()){return;}
+		temp = ((this->ptr)[1])->getRight();
+		if(temp->getbl()){return;}
+		for(int i = 2; i <=3; ++i){
+			(this->ptr)[i]->setdisp(' ');
+			(this->ptr)[i]->setbl(false);
+		}
+		(this->ptr)[0] = ((this->ptr)[0])->getUp();
+		(this->ptr)[1] = ((this->ptr)[1])->getLeft();
+		(this->ptr)[2] = ((this->ptr)[1])->getRight();
+		(this->ptr)[3] = ((this->ptr)[2])->getRight();
+		for(int i = 0; i <= 3; ++i){
+			(this->ptr)[i]->setdisp(this->disp);
+			(this->ptr)[i]->setbl(true);
+		}
+	}
+
+	if((!vert) && tipup && (!cl)){
+		Cell *temp = (this->ptr)[2];
+		for(int i = 0; i < 2; ++i){
+			temp = temp->getUp();
+			if(temp->getbl()){return;}
+		}
+		for(int i = 2; i <=3; ++i){
+			(this->ptr)[i]->setdisp(' ');
+			(this->ptr)[i]->setbl(false);
+		}
+		(this->ptr)[0] = (this->ptr)[1];
+		(this->ptr)[1] = (this->ptr)[2];
+		(this->ptr)[2] = ((this->ptr)[2])->getUp();
+		(this->ptr)[3] = ((this->ptr)[2])->getUp();
+		
+		for(int i = 0; i <= 3; ++i){
+			(this->ptr)[i]->setdisp(this->disp);
+			(this->ptr)[i]->setbl(true);
+		}
+	}
