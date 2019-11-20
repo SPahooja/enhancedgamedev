@@ -68,7 +68,7 @@ void PieceT::rotate(bool cl) {
                         else {
                                 temp[i] = cl?temp[i-1]->getDown():temp[i-1]->getUp();
                         }
-			if (temp[i]->getbl()) {
+			if ((temp[i]==nullptr)||(temp[i]->getbl())) {
 				return;
 			}
                 }
@@ -81,7 +81,7 @@ void PieceT::rotate(bool cl) {
                         else {
                                 temp[i] = cl?temp[i+1]->getDown():temp[i+1]->getUp();
                         }
-                        if (temp[i]->getbl()) {
+                        if ((temp[i]==nullptr)||(temp[i]->getbl())) {
 				return;
 			}
                 }
@@ -102,7 +102,7 @@ void PieceT::rotate(bool cl) {
 			temp[3] = fourthup?temp[1]->getLeft():temp[1]->getRight();
 		}
 	}
-	if (temp[3]->getbl()) {
+	if ((temp[3]==nullptr)||(temp[3]->getbl())) {
 		return;
 	}
 	for (int i=0; i < 4; i++) {

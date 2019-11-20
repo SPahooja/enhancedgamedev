@@ -49,6 +49,12 @@ int main(int argc, char *argv[]) {
 	    		g.nextBlock((pl%2)+1);
 	    		cout << g;
     		}
+		else if ((coms[0]=="levelup")||(coms[0]=="leveldown")) {
+			bool st = coms[0]=="levelup"?true:false;
+			for (int i=0; i < coms.size(); i++) {
+				g.chngLevel((pl%2)+1, st);
+			}
+		}
   	}
   }
   catch (ios::failure &) {}  // Any I/O failure quits

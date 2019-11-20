@@ -1,6 +1,11 @@
 #ifndef LEVEL1_H
 #define LEVEL1_H
 #include "level.h"
+#include "pieceI.h"
+#include "pieceZ.h"
+#include "pieceS.h"
+#include "pieceT.h"
+#include "pieceO.h"
 #include <fstream>
 
 class Piece;

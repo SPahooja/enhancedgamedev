@@ -3,9 +3,9 @@
 #include <cstdlib>
 using namespace std;
 
-LevelOne::LevelOne(int s) seed{s} {}
+LevelOne::LevelOne(int s): seed{s} {}
 
-LevelOne::nextPiece(vector<vector<Cell*>> &t) {
+Piece* LevelOne::nextPiece(vector<vector<Cell*>> &t) {
 	srand(this->seed);
 	int pos = rand()%12+1;
 	Piece *pc = nullptr;
@@ -28,4 +28,5 @@ LevelOne::nextPiece(vector<vector<Cell*>> &t) {
 	}
 	else if ((pos==11)||(pos==12)) {
 	}
+	return pc;
 }

@@ -6,6 +6,7 @@
 #include "pieceZ.h"
 #include "pieceS.h"
 #include "level0.h"
+#include "level1.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -31,10 +32,13 @@ void setmap(vector<vector<Cell*>> &mp) {
 }
 
 Level* makeLevel(int n, int p) {
-	string s = p==1?"sequence1.txt":"sequence2.txt";
 	Level *lo = nullptr;
 	if (n==0) {
+		string s = p==1?"sequence1.txt":"sequence2.txt";
 		lo = new LevelZero(s);
+	}
+	else if (n==1) {
+		lo = new LevelOne(0);
 	}
 	// More cases here
 	return lo;
@@ -147,6 +151,7 @@ void  Grid::dropBlock(int p) {
 		}
         }
         else {
+		cout << "came here" << endl;
                 move2[move2.size()-1]->drop();
 		for (int j=17; j>=0; j--) {
 			for (int i=0; i < 11; i++) {
@@ -160,4 +165,17 @@ void  Grid::dropBlock(int p) {
                 	}
 		}
         }
+}
+
+void Grid::chngLevel(int p, bool up) {
+	if (p==1) {
+		delete lp1;
+		++lev1;
+		lp1 = makeLevel(lev1, p);
+	}
+	else {
+		delete lp2;
+		++lev2;
+		lp2 = makeLevel(lev2, p);
+	}
 }
