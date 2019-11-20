@@ -38,13 +38,14 @@ int main(int argc, char *argv[]) {
 			cout << g;
 		}
     		else if (coms[0]=="drop") {
-			cout << pl << endl;
-	    		for (int i=0; i < coms.size(); i++) {
-	    			g.dropBlock((pl%2)+1);
-	    		}
-	    		cout << g;
+			g.dropBlock((pl%2)+1);
+			if (coms.size()>1) {
+	    			for (int i=1; i<coms.size(); i++) {
+					g.nextBlock((pl%2)+1);
+	    				g.dropBlock((pl%2)+1);
+	    			}
+			}
 	    		++pl;
-			cout << pl << endl;
 	    		g.nextBlock((pl%2)+1);
 	    		cout << g;
     		}
