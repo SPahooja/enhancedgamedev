@@ -102,16 +102,13 @@ void PieceJ::rotate(bool cl){}
 
 
 void PieceJ::rotate(bool cl){
-	int anchor;
 	bool vert;
 	bool tipup = false;
 	vector<Cell*> temp = (this->ptr);
 	int row1 = (this->ptr)[0]->getrow();
 	int col1 = (this->ptr)[0]->getcol();
 	int row2 = (this->ptr)[1]->getrow();
-	int col2 = (this->ptr)[1]->getcol();
-	int row3 = (this->ptr)[2]->getrow();
-	int col3 = (this->ptr)[2]->getcol();
+	//int col2 = (this->ptr)[1]->getcol();
 	int row4 = (this->ptr)[3]->getrow();
 	int col4 = (this->ptr)[3]->getcol();
 
@@ -290,7 +287,7 @@ void PieceJ::rotate(bool cl){
 		}
 	}
 
-	else if(vert && tiup && (!cl)){
+	else if(vert && tipup && (!cl)){
 		Cell *temp = (this->ptr)[3];
 		for(int i = 0; i < 2; ++i){
 			temp = temp->getRight();
