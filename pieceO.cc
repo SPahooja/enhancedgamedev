@@ -19,4 +19,8 @@ PieceO::PieceO(vector<vector<Cell*>> &t) {
 
 PieceO::~PieceO() {}
 
-void PieceO::rotate(bool cl) {}
+void PieceO::rotate(bool cl) {
+	if (!cl) {
+		this->movepos("left");
+	}
+}

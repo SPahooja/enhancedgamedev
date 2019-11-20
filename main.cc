@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
   string cmd;
   g.nextBlock(1);
   cout << g;
-  int i = 0;
+  int pl = 0;
   try {
   	while (true) {
     		cin >> cmd;
@@ -21,29 +21,31 @@ int main(int argc, char *argv[]) {
     		}
    		else if ((coms[0]=="right")||(coms[0]=="left")||(coms[0]=="down")) {
 	    		for (int i=0; i < coms.size(); i++) {
-			    	g.moveBlock((i%2)+1, coms[0]);
+			    	g.moveBlock((pl%2)+1, coms[0]);
 	   	 	}
 	    		cout << g;
     		}
     		else if (coms[0]=="clockwise") {
 	    		for (int i=0; i < coms.size(); i++) {
-		    		g.rotateBlock((i%2)+1, true);
+		    		g.rotateBlock((pl%2)+1, true);
 	    		}
 	    		cout << g;
     		}
     		else if (coms[0]=="counterclockwise") {
 			for (int i=0; i < coms.size(); i++) {
-				g.rotateBlock((i%2)+1, false);
+				g.rotateBlock((pl%2)+1, false);
 			}
 			cout << g;
 		}
     		else if (coms[0]=="drop") {
+			cout << pl << endl;
 	    		for (int i=0; i < coms.size(); i++) {
-	    			g.dropBlock((i%2)+1);
+	    			g.dropBlock((pl%2)+1);
 	    		}
 	    		cout << g;
-	    		++i;
-	    		g.nextBlock((i%2)+1);
+	    		++pl;
+			cout << pl << endl;
+	    		g.nextBlock((pl%2)+1);
 	    		cout << g;
     		}
   	}

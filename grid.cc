@@ -30,10 +30,11 @@ void setmap(vector<vector<Cell*>> &mp) {
         }
 }
 
-Level* makeLevel(int n) {
+Level* makeLevel(int n, int p) {
+	string s = p==1?"sequence1.txt":"sequence2.txt";
 	Level *lo = nullptr;
 	if (n==0) {
-		lo = new LevelZero();
+		lo = new LevelZero(s);
 	}
 	// More cases here
 	return lo;
@@ -44,8 +45,8 @@ Grid::Grid() {
 	setmap(this->map2);
 	this->lev1 = 0;
 	this->lev2 = 0;
-	this->lp1 = makeLevel(lev1);
-	this->lp2 = makeLevel(lev2);
+	this->lp1 = makeLevel(lev1, 1);
+	this->lp2 = makeLevel(lev2, 2);
 	this->curscore1 = 0;
 	this->curscore2 = 0;
 }
@@ -102,14 +103,12 @@ Grid::~Grid() {
 }
 
 void Grid::nextBlock(int p) {
-	cout << p << endl;
 	if (p==1) {
-		Piece *pc = lp1->nextPiece(p, map1);
+		Piece *pc = lp1->nextPiece(map1);
 		move1.push_back(pc);
 	}
 	else {
-		cout << "correct" << endl;
-		Piece *pc = lp2->nextPiece(p, map2);
+		Piece *pc = lp2->nextPiece(map2);
 		move2.push_back(pc);
 	}
 }

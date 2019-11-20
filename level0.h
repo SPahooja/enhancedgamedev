@@ -7,13 +7,12 @@ class Piece;
 class Cell;
 
 class LevelZero: public Level {
-	int pos1;
-	int len1;
-	int pos2;
-	int len2;
+	int pos;
+	int len;
+	std::string fl;
 	public:
-		LevelZero();
-		Piece* nextPiece(int p, std::vector<std::vector<Cell*>> &t) override;
+		LevelZero(std::string s);
+		Piece* nextPiece(std::vector<std::vector<Cell*>> &t) override;
 };
 
 #endif

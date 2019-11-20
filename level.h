@@ -8,7 +8,7 @@ class Piece;
 class Cell;
 class Level {
 	public:
-		virtual Piece* nextPiece(int p, std::vector<std::vector<Cell*>> &t) = 0;
+		virtual Piece* nextPiece(std::vector<std::vector<Cell*>> &t) = 0;
 };
 
 #endif
