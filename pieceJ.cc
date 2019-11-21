@@ -5,6 +5,8 @@
 using namespace std;
 
 PieceJ::PieceJ(vector<vector<Cell*>> &t) {
+	this->valid = 4;
+    this->disp = 'J';
 	(this->ptr).push_back(t[2][0]);
 	(this->ptr).push_back(t[3][0]);
 	(this->ptr).push_back(t[3][1]);
