@@ -3,10 +3,11 @@
 #include <cstdlib>
 using namespace std;
 
-LevelOne::LevelOne(int s): seed{s} {}
+LevelOne::LevelOne(int s): seed{s} {
+	srand(s);
+}
 
 Piece* LevelOne::nextPiece(vector<vector<Cell*>> &t) {
-	srand(this->seed);
 	int pos = rand()%12+1;
 	Piece *pc = nullptr;
 	if (pos==1) {

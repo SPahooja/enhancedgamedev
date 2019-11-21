@@ -19,6 +19,21 @@ PieceJ::PieceJ(vector<vector<Cell*>> &t) {
 
 PieceJ::~PieceJ() {}
 
+void PieceJ::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+	for (int i=0; i<4; i++) {
+		ptr[i]->setdisp(' ');
+		ptr[i]->setbl(false);
+	}
+	ptr[0] = des[2][0];
+	ptr[1] = des[3][0];
+	ptr[2] = des[3][1];
+	ptr[3] = des[3][2];
+	for (int i=0; i<4; i++) {
+		ptr[i]->setdisp('J');
+		ptr[i]->setbl(true);
+	}
+}
+
 void PieceJ::rotate(bool cl){
 	bool vert;
 	bool tipup = false;

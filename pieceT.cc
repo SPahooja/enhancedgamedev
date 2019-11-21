@@ -19,6 +19,21 @@ PieceT::PieceT(vector<vector<Cell*>> &t) {
 
 PieceT::~PieceT() {}
 
+void PieceT::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+	for (int i=0; i<4; i++) {
+		(this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+	}
+	for (int i=0; i < 3; i++) {
+		(this->ptr)[i] = des[2][i];
+		(this->ptr)[i]->setdisp('T');
+		(this->ptr)[i]->setbl(true);
+	}
+	(this->ptr)[3] = des[3][1];
+	(this->ptr)[3]->setdisp('T');
+	(this->ptr)[3]->setbl(true);
+}
+
 void PieceT::rotate(bool cl) {
 	int anchor;
 	bool vert;
