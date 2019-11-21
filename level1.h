@@ -6,6 +6,7 @@
 #include "pieceS.h"
 #include "pieceT.h"
 #include "pieceO.h"
+#include "pieceJ.h"
 #include <fstream>
 
 class Piece;
