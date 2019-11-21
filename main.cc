@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
   Grid g;
   string cmd;
   g.nextBlock(1);
+  g.nextBlock(2);
   cout << g;
   int pl = 0;
   try {
@@ -45,8 +46,8 @@ int main(int argc, char *argv[]) {
 	    				g.dropBlock((pl%2)+1);
 	    			}
 			}
+			g.nextBlock((pl%2)+1);
 	    		++pl;
-	    		g.nextBlock((pl%2)+1);
 	    		cout << g;
     		}
 		else if ((coms[0]=="levelup")||(coms[0]=="leveldown")) {
