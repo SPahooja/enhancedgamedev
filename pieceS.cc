@@ -22,6 +22,21 @@ PieceS::PieceS(vector<vector<Cell*>> &t) {              // Creating at top-left
 
 PieceS::~PieceS() {}
 
+void PieceS::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+	for (int i=0; i<4; i++) {
+		(this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+	}
+	(this->ptr)[0] = des[3][2];
+	(this->ptr)[1] = des[3][1];
+	(this->ptr)[2] = des[4][1];
+	(this->ptr)[3] = des[4][2];
+	for (int i=0; i<4; i++) {
+		(this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+	}
+}
+
 void PieceS::rotate(bool cl) {
     bool vert;
     int row1 = (this->ptr)[0]->getrow();

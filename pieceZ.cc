@@ -22,6 +22,21 @@ PieceZ::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
 
 PieceZ::~PieceZ() {}
 
+void PieceZ::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+	for (int i=0; i<4; i++) {
+		ptr[i]->setdisp(' ');
+		ptr[i]->setbl(false);
+	}
+	ptr[0] = des[3][0];
+	ptr[1] = des[3][1];
+	ptr[2] = des[4][1];
+	ptr[3] = des[4][2];
+	for (int i=0; i<4; i++) {
+		ptr[i]->setdisp('Z');
+		ptr[i]->setbl(true);
+	}
+}
+
 void PieceZ::rotate(bool cl) {
     bool vert;
     int row1 = (this->ptr)[0]->getrow();

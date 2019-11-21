@@ -16,14 +16,18 @@ class Grid {
 	Level *lp1;
 	int curscore1;
 	int lev1;
+	Piece* nxtpc1;
+	std::vector<std::vector<Cell*>> nxtmap1;
 	std::vector<std::vector<Cell*>> map2;
 	std::vector<Piece*> move2;
 	Level *lp2;
 	int curscore2;
 	int lev2;
+	Piece* nxtpc2;
+	std::vector<std::vector<Cell*>> nxtmap2;
 	GraphicDisplay *gd;
 	public:
-		Grid();
+		Grid(int l1=0, int l2=0);
 		void nextBlock(int p);
 		void moveBlock(int p, std::string dir);
 		void rotateBlock(int p, bool clock);

@@ -31,6 +31,17 @@ void setmap(vector<vector<Cell*>> &mp) {
         }
 }
 
+void setnext(vector<vector<Cell*>> &mp) {
+        for (int i=0; i < 4; i++) {
+                vector<Cell*> temp;
+                for (int j=0; j < 11; j++) {
+                        Cell *tp = new Cell{i, j};
+                        temp.push_back(tp);
+                }
+                mp.push_back(temp);
+        }
+}
+
 Level* makeLevel(int n, int p) {
 	Level *lo = nullptr;
 	if (n==0) {
@@ -44,13 +55,17 @@ Level* makeLevel(int n, int p) {
 	return lo;
 }
 
-Grid::Grid() {
+Grid::Grid(int l1, int l2) {
 	setmap(this->map1);
 	setmap(this->map2);
-	this->lev1 = 0;
-	this->lev2 = 0;
+	setnext(this->nxtmap1);
+	setnext(this->nxtmap2);
+	this->lev1 = l1;
+	this->lev2 = l2;
 	this->lp1 = makeLevel(lev1, 1);
 	this->lp2 = makeLevel(lev2, 2);
+	this->nxtpc1 = lp1->nextPiece(nxtmap1);
+	this->nxtpc2 = lp2->nextPiece(nxtmap2);
 	this->curscore1 = 0;
 	this->curscore2 = 0;
 }
@@ -86,6 +101,18 @@ ostream &operator<<(ostream &out, const Grid &g) {
 	}
 	repeatprinter(out, "-", 11, 5);
 	out << "Next:           Next:" << endl;
+	for (int i=0; i < 4; i++) {
+		for (int j=0; j < 11; j++) {
+			out << ((g.nxtmap1)[i][j])->getdisp();
+		}
+		for (int j=0; j < 5; j++) {
+			out << ' ';
+		}
+		for (int j=0; j < 11; j++) {
+			out << ((g.nxtmap2)[i][j])->getdisp();
+		}
+		out << endl;
+	}
 	return out;
 }
 
@@ -108,12 +135,15 @@ Grid::~Grid() {
 
 void Grid::nextBlock(int p) {
 	if (p==1) {
-		Piece *pc = lp1->nextPiece(map1);
-		move1.push_back(pc);
+		this->nxtpc1->transferPiece(nxtmap1, map1);
+		cout << "here" << endl;
+		move1.push_back(this->nxtpc1);
+		this->nxtpc1 = lp1->nextPiece(nxtmap1);
 	}
 	else {
-		Piece *pc = lp2->nextPiece(map2);
-		move2.push_back(pc);
+		this->nxtpc2->transferPiece(nxtmap2, map2);
+		move2.push_back(this->nxtpc2);
+		this->nxtpc2 = lp2->nextPiece(nxtmap2);
 	}
 }
 
@@ -151,7 +181,6 @@ void  Grid::dropBlock(int p) {
 		}
         }
         else {
-		cout << "came here" << endl;
                 move2[move2.size()-1]->drop();
 		for (int j=17; j>=0; j--) {
 			for (int i=0; i < 11; i++) {

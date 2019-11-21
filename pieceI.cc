@@ -14,6 +14,16 @@ PieceI::PieceI(vector<vector<Cell*>> &t) {
 	}
 }
 
+void PieceI::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+	for (int i=0; i < 4; i++) {
+		(this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(true);
+		(this->ptr)[i] = des[3][i];
+		(this->ptr)[i]->setdisp('I');
+		(this->ptr)[i]->setbl(true);
+	}
+}
+
 PieceI::~PieceI() {}
 
 void PieceI::rotate(bool cl) {
