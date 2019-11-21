@@ -170,12 +170,12 @@ void  Grid::dropBlock(int p) {
 void Grid::chngLevel(int p, bool up) {
 	if (p==1) {
 		delete lp1;
-		++lev1;
+		lev1= up?lev1+1:lev1-1;
 		lp1 = makeLevel(lev1, p);
 	}
 	else {
 		delete lp2;
-		++lev2;
+		lev2= up?lev2+1:lev2-1;
 		lp2 = makeLevel(lev2, p);
 	}
 }

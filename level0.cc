@@ -6,6 +6,7 @@
 #include "pieceT.h"
 #include "pieceS.h"
 #include "pieceZ.h"
+#include "pieceJ.h"
 #include "cell.h"
 #include <iostream>
 #include <sstream>
@@ -47,6 +48,9 @@ Piece* LevelZero::nextPiece(vector<vector<Cell*>> &t) {
 	}
 	else if (piece=="Z") {
 		pc = new PieceZ(t);
+	}
+	else if (piece=="J") {
+		pc = new PieceJ(t);
 	}
 	return pc;
 }
