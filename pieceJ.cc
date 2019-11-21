@@ -163,10 +163,8 @@ void PieceJ::rotate(bool cl){
 	else if(vert && (!tipup) && (!cl)){
 		Cell *temp = ((this->ptr)[0])->getUp();
 		if((temp==nullptr)||(temp->getbl())){return;}
-		for(int i = 0; i < 2; ++i){
-			temp = temp->getRight();
-			if((temp==nullptr)||(temp->getbl())){return;}
-		}
+		temp = (temp->getRight())->getRight();
+		if((temp==nullptr)||(temp->getbl())){return;}
 		temp = temp->getDown();
 		if((temp==nullptr)||(temp->getbl())){return;}
 		for(int i = 0 ; i <= 3; ++i){
