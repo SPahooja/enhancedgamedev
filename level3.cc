@@ -30,4 +30,4 @@ Piece* LevelThree::nextPiece(vector<vector<Cell*>> &t) {
     else if (pos==9) {
     }
     return pc;
-    }
+}
