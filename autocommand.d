@@ -1,1 +1,0 @@
-autocommand.o: autocommand.cc
