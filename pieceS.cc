@@ -9,14 +9,14 @@ PieceS::PieceS(vector<vector<Cell*>> &t) {              // Creating at top-left
     this->valid = 4;
     this->disp = 'S';
     for (int i = 2; i >= 1; --i) {
+        (this->ptr).push_back(t[2][i]);
+        t[2][i]->setdisp('S');
+        t[2][i]->setbl(true);
+    }
+    for (int i = 1; i >= 0; --i) {
         (this->ptr).push_back(t[3][i]);
         t[3][i]->setdisp('S');
         t[3][i]->setbl(true);
-    }
-    for (int i = 1; i >= 0; --i) {
-        (this->ptr).push_back(t[4][i]);
-        t[4][i]->setdisp('S');
-        t[4][i]->setbl(true);
     }
 }
 
@@ -27,14 +27,14 @@ void PieceS::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std
 		(this->ptr)[i]->setdisp(' ');
 		(this->ptr)[i]->setbl(false);
 	}
-	(this->ptr)[0] = des[3][2];
-	(this->ptr)[1] = des[3][1];
-	(this->ptr)[2] = des[4][1];
-	(this->ptr)[3] = des[4][2];
+	(this->ptr)[0] = des[2][2];
+	(this->ptr)[1] = des[2][1];
+	(this->ptr)[2] = des[3][1];
+	(this->ptr)[3] = des[3][0];
 	for (int i=0; i<4; i++) {
 		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
-		(this->ptr)[i]->setdisp(' ');
-		(this->ptr)[i]->setbl(false);
+		(this->ptr)[i]->setdisp(this->disp);
+		(this->ptr)[i]->setbl(true);
 	}
 }
 

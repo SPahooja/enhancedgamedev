@@ -70,7 +70,7 @@ void PieceT::rotate(bool cl) {
                 else {
                         anchor = 2;
                 }
-                if (((!cl)&&(col1<=1))||((cl)&&(col1>=16))) {
+                if (((!cl)&&(col1<=1))||((cl)&&(col1>=9))) {
                         return;
                 }
 		if (col4 > col1) {

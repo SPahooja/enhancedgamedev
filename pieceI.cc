@@ -55,7 +55,7 @@ void PieceI::rotate(bool cl) {
 		else {
 			anchor = 3;
 		}
-		if (((!cl)&&(col1<=2))||((cl)&&(col1>=15))) {
+		if (((!cl)&&(col1<=2))||((cl)&&(col1>=8))) {
 			return;
 		}
 	}
@@ -66,7 +66,7 @@ void PieceI::rotate(bool cl) {
                                 temp = cl?temp->getRight():temp->getLeft();
                         }
                         else {
-                                temp = cl?temp->getDown():temp->getUp();
+                                temp = temp->getUp();
                         }
 			if (temp->getbl()) {
 				return;
@@ -79,7 +79,7 @@ void PieceI::rotate(bool cl) {
 				(this->ptr)[i] = cl?(this->ptr)[i-1]->getRight():(this->ptr)[i-1]->getLeft();
 			}
 			else {
-				(this->ptr)[i] = cl?(this->ptr)[i-1]->getDown():(this->ptr)[i-1]->getUp();
+				(this->ptr)[i] = (this->ptr)[i-1]->getUp();
 			}
 			(this->ptr)[i]->setdisp(this->disp);
 			(this->ptr)[i]->setbl(true);
@@ -92,7 +92,7 @@ void PieceI::rotate(bool cl) {
                                 temp = cl?temp->getRight():temp->getLeft();
                         }
                         else {
-                                temp = cl?temp->getDown():temp->getUp();
+                                temp = temp->getUp();
                         }
                         if (temp->getbl()) {
                                 return;
@@ -105,7 +105,7 @@ void PieceI::rotate(bool cl) {
 				(this->ptr)[i] = cl?(this->ptr)[i+1]->getRight():(this->ptr)[i+1]->getLeft();
 			}
 			else {
-				(this->ptr)[i] = cl?(this->ptr)[i+1]->getDown():(this->ptr)[i+1]->getUp();
+				(this->ptr)[i] = (this->ptr)[i+1]->getUp();
 			}
 			(this->ptr)[i]->setdisp(this->disp);
 			(this->ptr)[i]->setbl(true);
