@@ -58,6 +58,7 @@ void PieceL::rotate(bool cl){
         }
     }
     else{
+        vert = true;
         if(col0 < col3){
             tipup = true;
         }
