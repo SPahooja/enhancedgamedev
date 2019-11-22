@@ -17,6 +17,8 @@ PieceL::PieceL(vector<vector<Cell*>> &t) {
 	}
 }
 
+void transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des){}
+
 PieceL::~PieceL() {}
 
 void PieceL::rotate(bool cl){
