@@ -26,10 +26,12 @@ void PieceT::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std
 	}
 	for (int i=0; i < 3; i++) {
 		(this->ptr)[i] = des[2][i];
+		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		(this->ptr)[i]->setdisp('T');
 		(this->ptr)[i]->setbl(true);
 	}
 	(this->ptr)[3] = des[3][1];
+	if (ptr[3]->getbl()) { throw invalid_argument("Game Over"); }
 	(this->ptr)[3]->setdisp('T');
 	(this->ptr)[3]->setbl(true);
 }

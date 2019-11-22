@@ -27,6 +27,7 @@ void PieceO::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std
 	ptr[2] = des[3][0];
 	ptr[3] = des[3][1];
 	for (int i=0; i<4; i++) {
+		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		ptr[i]->setdisp('O');
 		ptr[i]->setbl(true);
 	}

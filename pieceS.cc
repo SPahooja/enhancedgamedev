@@ -32,6 +32,7 @@ void PieceS::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std
 	(this->ptr)[2] = des[4][1];
 	(this->ptr)[3] = des[4][2];
 	for (int i=0; i<4; i++) {
+		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		(this->ptr)[i]->setdisp(' ');
 		(this->ptr)[i]->setbl(false);
 	}

@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
   g.nextBlock(1);
   g.nextBlock(2);
   cout << g;
+  cout << "PLAYER 1'S TURN" << endl;
   int pl = 0;
   try {
   	while (true) {
@@ -40,15 +41,22 @@ int main(int argc, char *argv[]) {
 		}
     		else if (coms[0]=="drop") {
 			g.dropBlock((pl%2)+1);
-			if (coms.size()>1) {
-	    			for (int i=1; i<coms.size(); i++) {
-					g.nextBlock((pl%2)+1);
-	    				g.dropBlock((pl%2)+1);
-	    			}
+			try {
+				if (coms.size()>1) {
+	    				for (int i=1; i<coms.size(); i++) {
+						g.nextBlock((pl%2)+1);
+	    					g.dropBlock((pl%2)+1);
+	    				}
+				}
+				g.nextBlock((pl%2)+1);
+	    			++pl;
+	    			cout << g;
+				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
 			}
-			g.nextBlock((pl%2)+1);
-	    		++pl;
-	    		cout << g;
+			catch (const invalid_argument &r) {
+				cout << "PLAYER " << (pl%2)+1 << " HAS LOST THE GAME" << endl;
+				return 0;
+			}
     		}
 		else if ((coms[0]=="levelup")||(coms[0]=="leveldown")) {
 			bool st = coms[0]=="levelup"?true:false;

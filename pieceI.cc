@@ -1,6 +1,7 @@
 #include "pieceI.h"
 #include "piece.h"
 #include "cell.h"
+#include <stdexcept>
 #include <vector>
 using namespace std;
 
@@ -17,7 +18,8 @@ PieceI::PieceI(vector<vector<Cell*>> &t) {
 void PieceI::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
 	for (int i=0; i < 4; i++) {
 		(this->ptr)[i]->setdisp(' ');
-		(this->ptr)[i]->setbl(true);
+		(this->ptr)[i]->setbl(false);
+		if (des[3][i]->getbl()) { throw invalid_argument("Game Over"); }
 		(this->ptr)[i] = des[3][i];
 		(this->ptr)[i]->setdisp('I');
 		(this->ptr)[i]->setbl(true);

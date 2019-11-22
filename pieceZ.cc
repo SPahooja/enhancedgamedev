@@ -32,6 +32,7 @@ void PieceZ::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std
 	ptr[2] = des[4][1];
 	ptr[3] = des[4][2];
 	for (int i=0; i<4; i++) {
+		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		ptr[i]->setdisp('Z');
 		ptr[i]->setbl(true);
 	}

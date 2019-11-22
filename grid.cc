@@ -121,6 +121,10 @@ Grid::~Grid() {
 		for (int j=0; j < 11; j++) {
 			delete map1[i][j];
 			delete map2[i][j];
+			if (i < 4) {
+				delete nxtmap1[i][j];
+				delete nxtmap2[i][j];
+			}
 		}
 	}
 	for (int i=0; i < move1.size(); i++) {
@@ -129,6 +133,8 @@ Grid::~Grid() {
 	for (int j=0; j < move2.size(); j++) {
 		delete move2[j];
 	}
+	delete nxtpc1;
+	delete nxtpc2;
 	delete lp1;
 	delete lp2;
 }
@@ -197,11 +203,13 @@ void  Grid::dropBlock(int p) {
 
 void Grid::chngLevel(int p, bool up) {
 	if (p==1) {
+		if (((lev1==4)&&up)||((lev1==0)&&(!up))) { return; }
 		delete lp1;
 		lev1= up?lev1+1:lev1-1;
 		lp1 = makeLevel(lev1, p);
 	}
 	else {
+		if (((lev2==4)&&up)||((lev2==0)&&(!up))) { return; }
 		delete lp2;
 		lev2= up?lev2+1:lev2-1;
 		lp2 = makeLevel(lev2, p);
