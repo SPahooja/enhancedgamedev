@@ -9,14 +9,14 @@ PieceZ::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
     this->valid = 4;
     this->disp = 'Z';
     for (int i = 0; i <= 1; ++i) {
+        (this->ptr).push_back(t[2][i]);
+        t[2][i]->setdisp('Z');
+        t[2][i]->setbl(true);
+    }
+    for (int i = 1; i <= 2; ++i) {
         (this->ptr).push_back(t[3][i]);
         t[3][i]->setdisp('Z');
         t[3][i]->setbl(true);
-    }
-    for (int i = 1; i <= 2; ++i) {
-        (this->ptr).push_back(t[4][i]);
-        t[4][i]->setdisp('Z');
-        t[4][i]->setbl(true);
     }
 }
 
@@ -27,10 +27,10 @@ void PieceZ::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std
 		ptr[i]->setdisp(' ');
 		ptr[i]->setbl(false);
 	}
-	ptr[0] = des[3][0];
-	ptr[1] = des[3][1];
-	ptr[2] = des[4][1];
-	ptr[3] = des[4][2];
+	ptr[0] = des[2][0];
+	ptr[1] = des[2][1];
+	ptr[2] = des[3][1];
+	ptr[3] = des[3][2];
 	for (int i=0; i<4; i++) {
 		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		ptr[i]->setdisp('Z');
