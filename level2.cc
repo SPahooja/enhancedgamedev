@@ -3,10 +3,11 @@
 #include <cstdlib>
 using namespace std;
 
-LevelTwo::LevelTwo(int s): seed{s} {}
+LevelTwo::LevelTwo(int s): seed{s} {
+	srand(s);
+}
 
 Piece* LevelTwo::nextPiece(vector<vector<Cell*>> &t) {
-	srand(this->seed);
 	int pos = rand()%7+1;
 	Piece *pc = nullptr;
 	if (pos==1) {
@@ -28,6 +29,7 @@ Piece* LevelTwo::nextPiece(vector<vector<Cell*>> &t) {
 		pc = new PieceJ(t);
 	}
 	else if (pos==7) {
+		pc = new PieceL(t);
 	}
 	return pc;
 }

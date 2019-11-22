@@ -68,7 +68,6 @@ void Piece::drop() {
 				return;
 			}
 		}
-		cout << this->disp << endl;
 		for (int i=0; i < 4; i++) {
 			ptr[i]->setdisp(' ');
 			ptr[i]->setbl(false);
