@@ -66,7 +66,6 @@ void PieceL::rotate(bool cl){
             tipup = false;
         }
     }
-    cout<<"vert: "<<vert<<" tipup: "<<tipup<<" cl: "<<cl<<endl;
 
     if((!vert) && tipup && cl){
         Cell *temp = (this->ptr)[3];
