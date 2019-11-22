@@ -65,10 +65,7 @@ void PieceL::rotate(bool cl){
             tipup = false;
         }
     }
-    for(int i = 0; i <= 3; ++i){
-        (this->ptr)[i]->setdisp(' ');
-		(this->ptr)[i]->setbl(false);
-    }
+    cout<<"vert: "<<vert<<" tipup: "<<tipup<<" cl: "<<cl<<endl;
 
     if((!vert) && tipup && cl){
         Cell *temp = (this->ptr)[3];
@@ -76,6 +73,10 @@ void PieceL::rotate(bool cl){
             temp = temp->getUp();
             if((temp==nullptr)||(temp->getbl())){return;}
         }
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[0] = (this->ptr)[2];
         (this->ptr)[1] = (this->ptr)[3];
     	(this->ptr)[2] = ((this->ptr)[1])->getUp();
@@ -88,6 +89,10 @@ void PieceL::rotate(bool cl){
             temp = temp->getRight();
             if((temp==nullptr)||(temp->getbl())){return;}
         } 
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[0] = (this->ptr)[1];
         (this->ptr)[1] = (this->ptr)[2];
         (this->ptr)[2] = ((this->ptr)[1])->getRight();
@@ -101,6 +106,10 @@ void PieceL::rotate(bool cl){
 		if((temp==nullptr)||(temp->getbl())){return;}
 		temp = ((this->ptr)[2])->getDown();
 		if((temp==nullptr)||(temp->getbl())){return;}
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[0] = (((this->ptr)[2])->getUp())->getLeft();
 		(this->ptr)[1] = ((this->ptr)[2])->getUp();
 		(this->ptr)[3] = ((this->ptr)[2])->getDown();
@@ -113,6 +122,10 @@ void PieceL::rotate(bool cl){
 		if((temp==nullptr)||(temp->getbl())){return;}
 		temp = ((this->ptr)[3])->getLeft();
 		if((temp==nullptr)||(temp->getbl())){return;}
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[0] = (((this->ptr)[3])->getRight())->getUp();
 		(this->ptr)[1] = ((this->ptr)[3])->getRight();
         (this->ptr)[2] = (this->ptr)[3];
@@ -129,6 +142,10 @@ void PieceL::rotate(bool cl){
         }
 		temp = temp->getLeft();
 		if((temp==nullptr)||(temp->getbl())){return;}
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[0] = ((((this->ptr)[2])->getUp())->getUp())->getLeft();
         (this->ptr)[1] = ((this->ptr)[0])->getRight();
         (this->ptr)[2] = ((this->ptr)[1])->getDown();
@@ -142,6 +159,10 @@ void PieceL::rotate(bool cl){
 		if((temp==nullptr)||(temp->getbl())){return;}
 		temp = ((this->ptr)[2])->getRight();
 		if((temp==nullptr)||(temp->getbl())){return;}
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[0] = (((this->ptr)[2])->getLeft())->getDown();
 		(this->ptr)[1] = ((this->ptr)[2])->getLeft();
 		(this->ptr)[3] = ((this->ptr)[2])->getRight();
@@ -152,6 +173,10 @@ void PieceL::rotate(bool cl){
 		if((temp==nullptr)||(temp->getbl())){return;}
 		temp = ((this->ptr)[0])->getRight();
 		if((temp==nullptr)||(temp->getbl())){return;}
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[0] = ((this->ptr)[0])->getRight();
         (this->ptr)[1] = ((this->ptr)[1])->getDown();
         (this->ptr)[2] = ((this->ptr)[1])->getUp();
@@ -163,6 +188,10 @@ void PieceL::rotate(bool cl){
 		if((temp==nullptr)||(temp->getbl())){return;}
 		temp = temp->getUp();
 		if((temp==nullptr)||(temp->getbl())){return;}
+        for(int i = 0; i <= 3; ++i){
+        (this->ptr)[i]->setdisp(' ');
+		(this->ptr)[i]->setbl(false);
+    }
         (this->ptr)[3] = (this->ptr)[1];
         (this->ptr)[2] = (this->ptr)[0];
         (this->ptr)[1] = ((this->ptr)[2])->getRight();
