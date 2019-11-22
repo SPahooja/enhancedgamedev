@@ -215,3 +215,10 @@ void Grid::chngLevel(int p, bool up) {
 		lp2 = makeLevel(lev2, p);
 	}
 }
+
+int Grid::getWinner() {
+	if (curscore1==curscore2) {
+		return 0;
+	}
+	return curscore1>curscore2?1:2;
+}

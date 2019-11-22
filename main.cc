@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
 				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
 			}
 			catch (const invalid_argument &r) {
-				cout << "PLAYER " << (pl%2)+1 << " HAS LOST THE GAME" << endl;
+				cout << "PLAYER " << ((pl+1)%2)+1 << " HAS WON THE GAME!" << endl;
 				return 0;
 			}
     		}
@@ -66,6 +66,14 @@ int main(int argc, char *argv[]) {
 		}
   	}
   }
-  catch (ios::failure &) {}  // Any I/O failure quits
+  catch (ios::failure &) {
+	  int x = g.getWinner();
+	  if (x==0) {
+		  cout << "PLAYER 1 and 2 TIED IN THE GAME!" << endl;
+	  }
+	  else {
+		  cout << "PLAYER " << x << " HAS WON THE GAME!" << endl;
+	  }
+  }  // Any I/O failure quits
 }
 
