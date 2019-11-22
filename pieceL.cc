@@ -6,7 +6,7 @@ using namespace std;
 
 PieceL::PieceL(vector<vector<Cell*>> &t) {
 	this->valid = 4;
-    this->disp = 'L';
+    	this->disp = 'L';
 	(this->ptr).push_back(t[2][2]);
 	(this->ptr).push_back(t[3][2]);
 	(this->ptr).push_back(t[3][1]);
@@ -17,7 +17,20 @@ PieceL::PieceL(vector<vector<Cell*>> &t) {
 	}
 }
 
-void transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des){}
+void PieceL::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des){
+	for (int i=0; i<4; i++) {
+		ptr[i]->setdisp(' ');
+		ptr[i]->setbl(false);
+	}
+	ptr[0] = des[2][2];
+	ptr[1] = des[3][2];
+	ptr[2] = des[3][1];
+	ptr[3] = des[3][0];
+	for (int i=0; i<4; i++) {
+		ptr[i]->setdisp(this->disp);
+		ptr[i]->setbl(true);
+	}
+}
 
 PieceL::~PieceL() {}
 
@@ -29,7 +42,7 @@ void PieceL::rotate(bool cl){
 	int col0 = (this->ptr)[0]->getcol();
 	int row1 = (this->ptr)[1]->getrow();
 	int col1 = (this->ptr)[1]->getcol();
-    int row2 = (this->ptr)[2]->getrow();
+    	int row2 = (this->ptr)[2]->getrow();
 	int col2 = (this->ptr)[2]->getcol();
 	int row3 = (this->ptr)[3]->getrow();
 	int col3 = (this->ptr)[3]->getcol();
@@ -155,8 +168,9 @@ void PieceL::rotate(bool cl){
         (this->ptr)[0] = ((this->ptr)[1])->getUp();
     }
 
-    for(int i = 0; i < 3; ++i){
+    for(int i = 0; i <= 3; ++i){
 			(this->ptr)[i]->setdisp(this->disp);
 			(this->ptr)[i]->setbl(true);
 		}
 }
+

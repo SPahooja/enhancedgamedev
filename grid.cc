@@ -136,7 +136,6 @@ Grid::~Grid() {
 void Grid::nextBlock(int p) {
 	if (p==1) {
 		this->nxtpc1->transferPiece(nxtmap1, map1);
-		cout << "here" << endl;
 		move1.push_back(this->nxtpc1);
 		this->nxtpc1 = lp1->nextPiece(nxtmap1);
 	}

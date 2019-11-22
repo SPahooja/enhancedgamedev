@@ -29,6 +29,7 @@ Piece* LevelOne::nextPiece(vector<vector<Cell*>> &t) {
 		pc = new PieceJ(t);
 	}
 	else if ((pos==11)||(pos==12)) {
+		pc = new PieceL(t);
 	}
 	return pc;
 }
