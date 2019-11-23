@@ -1,6 +1,5 @@
 I
-I
-I
-I
-I
-I
+O
+Z
+S
+L

@@ -7,6 +7,9 @@
 #include "pieceS.h"
 #include "level0.h"
 #include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "level4.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -51,7 +54,15 @@ Level* makeLevel(int n, int p) {
 	else if (n==1) {
 		lo = new LevelOne(0);
 	}
-	// More cases here
+	else if (n==2) {
+		lo = new LevelTwo(0);
+	}
+	else if (n==3) {
+		lo = new LevelThree(0);
+	}
+	else if (n==4) {
+		lo = new LevelFour(0);
+	}
 	return lo;
 }
 
@@ -221,4 +232,8 @@ int Grid::getWinner() {
 		return 0;
 	}
 	return curscore1>curscore2?1:2;
+}
+
+int Grid::getLevel(int p) {
+	return p==1?lev1:lev2;
 }

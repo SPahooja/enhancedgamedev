@@ -33,6 +33,7 @@ class Grid {
 		void rotateBlock(int p, bool clock);
 		void dropBlock(int p);
 		void chngLevel(int p, bool up);
+		int getLevel(int p);
 		int getWinner();
 		~Grid();
 	friend std::ostream &operator<<(std::ostream &out, const Grid &g);

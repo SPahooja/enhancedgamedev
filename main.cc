@@ -25,18 +25,30 @@ int main(int argc, char *argv[]) {
 	    		for (int i=0; i < coms.size(); i++) {
 			    	g.moveBlock((pl%2)+1, coms[0]);
 	   	 	}
+			int lev = g.getLevel((pl%2)+1);
+			if (lev>=3) {
+				g.moveBlock((pl%2)+1, "down");
+			}
 	    		cout << g;
     		}
     		else if (coms[0]=="clockwise") {
 	    		for (int i=0; i < coms.size(); i++) {
 		    		g.rotateBlock((pl%2)+1, true);
 	    		}
+			int lev = g.getLevel((pl%2)+1);
+                        if (lev>=3) {
+                                g.moveBlock((pl%2)+1, "down");
+                        }
 	    		cout << g;
     		}
     		else if (coms[0]=="counterclockwise") {
 			for (int i=0; i < coms.size(); i++) {
 				g.rotateBlock((pl%2)+1, false);
 			}
+			int lev = g.getLevel((pl%2)+1);
+                        if (lev>=3) {
+                                g.moveBlock((pl%2)+1, "down");
+                        }
 			cout << g;
 		}
     		else if (coms[0]=="drop") {
