@@ -332,3 +332,26 @@ void Grid::setHeavy(int p, bool h) {
 	}
 	hv2 = h;
 }
+
+void Grid::chngRandom(int p, string fl) {
+	if (p==1) {
+		if (lev1<3) { return; }
+		delete lp1;
+		if (lev1==3) {
+			lp1 = new LevelThree(0, fl);
+		}
+		else {
+			lp1 = new LevelFour(0, fl);
+		}
+	}
+	else {
+		if (lev2<3) { return; }
+		delete lp2;
+		if (lev2==3) {
+			lp2 = new LevelThree(0, fl);
+		}
+		else {
+			lp2 = new LevelFour(0, fl);
+		}
+	}
+}

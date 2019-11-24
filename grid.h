@@ -39,6 +39,7 @@ class Grid {
 		void rotateBlock(int p, bool clock);
 		int dropBlock(int p);
 		void chngLevel(int p, bool up);
+		void chngRandom(int p, std::string fl);
 		int getLevel(int p);
 		int getWinner();
 		void bldPlay(int p);

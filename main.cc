@@ -102,6 +102,13 @@ int main(int argc, char *argv[]) {
 				g.chngLevel((pl%2)+1, st);
 			}
 		}
+		else if (coms[0]=="norandom") {
+			cin >> cmd;
+			g.chngRandom((pl%2)+1, cmd);
+		}
+		else if (coms[0]=="random") {
+			g.chngRandom((pl%2)+1, "");
+		}
   	}
   }
   catch (ios::failure &) {

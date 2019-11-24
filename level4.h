@@ -15,8 +15,12 @@ class Cell;
 
 class LevelFour: public Level {
 	int seed;
+	bool random;
+	std::string file;
+	int pos;
+	int len;
 	public:
-		LevelFour(int s=0);
+		LevelFour(int s=0, std::string file="");
 		Piece* nextPiece(std::vector<std::vector<Cell*>> &t) override;
 };
 

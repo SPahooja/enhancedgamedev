@@ -9,14 +9,20 @@
 #include "pieceJ.h"
 #include "pieceL.h"
 #include <fstream>
+#include <iostream>
+#include <string>
 
 class Piece;
 class Cell;
 
 class LevelThree: public Level {
 	int seed;
+	bool random;
+        std::string file;
+        int pos;
+        int len;
 	public:
-		LevelThree(int s=0);
+		LevelThree(int s=0, std::string file="");
 		Piece* nextPiece(std::vector<std::vector<Cell*>> &t) override;
 };
 
