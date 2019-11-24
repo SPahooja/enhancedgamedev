@@ -145,6 +145,14 @@ ostream &operator<<(ostream &out, const Grid &g) {
 }
 
 Grid::~Grid() {
+	for (int i=0; i < move1.size(); i++) {
+                delete move1[i];
+        }
+        for (int j=0; j < move2.size(); j++) {
+                delete move2[j];
+        }
+	delete nxtpc1;
+	delete nxtpc2;
 	for (int i=0; i < 18; i++) {
 		for (int j=0; j < 11; j++) {
 			delete map1[i][j];
@@ -155,14 +163,6 @@ Grid::~Grid() {
 			}
 		}
 	}
-	for (int i=0; i < move1.size(); i++) {
-		delete move1[i];
-	}
-	for (int j=0; j < move2.size(); j++) {
-		delete move2[j];
-	}
-	delete nxtpc1;
-	delete nxtpc2;
 	delete lp1;
 	delete lp2;
 }
