@@ -5,6 +5,9 @@
 #include "pieceT.h"
 #include "pieceZ.h"
 #include "pieceS.h"
+#include "pieceJ.h"
+#include "pieceL.h"
+#include "pieceStar.h"
 #include "level0.h"
 #include "level1.h"
 #include "level2.h"
@@ -79,6 +82,8 @@ Grid::Grid(int l1, int l2) {
 	this->nxtpc2 = lp2->nextPiece(nxtmap2);
 	this->curscore1 = 0;
 	this->curscore2 = 0;
+	this->uns1 = 0;
+	this->uns2 = 0;
 }
 
 void repeatprinter(ostream &out, string s, int rep, int spc) {
@@ -184,9 +189,15 @@ void Grid::moveBlock(int p, string dir) {
 void  Grid::dropBlock(int p) {
         if (p==1) {
                 move1[move1.size()-1]->drop();
+		++uns1;
 		for (int j=17; j>=0; j--) {
 			for (int i=0; i < 11; i++) {
 				if (!(map1[17][i]->getbl())) {
+					if ((lev1==4)&&(uns1>=5)) {
+						Piece *tp = new PieceStar(map1);
+						move1.push_back(tp);
+						uns1 = 0;
+					}
 					return;
 				}
 			}
@@ -194,6 +205,7 @@ void  Grid::dropBlock(int p) {
 			for (int i=0; i < move1.size(); i++) {
 				move1[i]->rowdel();
 			}
+			uns1 = 0;
 		}
         }
         else {
@@ -201,6 +213,11 @@ void  Grid::dropBlock(int p) {
 		for (int j=17; j>=0; j--) {
 			for (int i=0; i < 11; i++) {
                         	if (!(map2[17][i]->getbl())) {
+					if ((lev2==4)&&(uns2>=5)) {
+                                                Piece *tp = new PieceStar(map2);
+                                                move2.push_back(tp);
+                                                uns2 = 0;
+                                        }
                                 	return;
                         	}
                 	}
@@ -208,6 +225,7 @@ void  Grid::dropBlock(int p) {
                 	for (int i=0; i < move2.size(); i++) {
                        		move2[i]->rowdel();
                 	}
+			uns2 = 0;
 		}
         }
 }

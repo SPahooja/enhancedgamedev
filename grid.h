@@ -18,6 +18,7 @@ class Grid {
 	int lev1;
 	Piece* nxtpc1;
 	std::vector<std::vector<Cell*>> nxtmap1;
+	int uns1;
 	std::vector<std::vector<Cell*>> map2;
 	std::vector<Piece*> move2;
 	Level *lp2;
@@ -25,6 +26,7 @@ class Grid {
 	int lev2;
 	Piece* nxtpc2;
 	std::vector<std::vector<Cell*>> nxtmap2;
+	int uns2;
 	GraphicDisplay *gd;
 	public:
 		Grid(int l1=0, int l2=0);
