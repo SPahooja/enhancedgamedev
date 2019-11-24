@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include "grid.h"
 #include "cell.h"
 #include "autocommand.h"
@@ -12,6 +13,7 @@ int main(int argc, char *argv[]) {
   string cmd;
   g.nextBlock(1);
   g.nextBlock(2);
+  system("clear");
   cout << g;
   cout << "PLAYER 1'S TURN" << endl;
   int pl = 0;
@@ -29,6 +31,7 @@ int main(int argc, char *argv[]) {
 			if (lev>=3) {
 				g.moveBlock((pl%2)+1, "down");
 			}
+			system("clear");
 	    		cout << g;
     		}
     		else if (coms[0]=="clockwise") {
@@ -39,6 +42,7 @@ int main(int argc, char *argv[]) {
                         if (lev>=3) {
                                 g.moveBlock((pl%2)+1, "down");
                         }
+				system("clear");		
 	    		cout << g;
     		}
     		else if (coms[0]=="counterclockwise") {
@@ -49,6 +53,7 @@ int main(int argc, char *argv[]) {
                         if (lev>=3) {
                                 g.moveBlock((pl%2)+1, "down");
                         }
+			system("clear");			
 			cout << g;
 		}
     		else if (coms[0]=="drop") {
@@ -77,6 +82,7 @@ int main(int argc, char *argv[]) {
 				}
 				g.nextBlock((pl%2)+1);
 	    			++pl;
+					system("clear");
 	    			cout << g;
 				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
 			}
