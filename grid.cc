@@ -104,6 +104,7 @@ void repeatprinter(ostream &out, string s, int rep, int spc) {
 }
 
 ostream &operator<<(ostream &out, const Grid &g) {
+	system("clear");
 	out << "Level: " << g.lev1 << "        Level: " << g.lev2 << endl;
 	out << "Score: " << g.curscore1 << "        Score: " << g.curscore2 << endl;
 	repeatprinter(out, "-", 11, 5);

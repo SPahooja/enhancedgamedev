@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include "grid.h"
 #include "cell.h"
 #include "autocommand.h"
@@ -13,6 +14,7 @@ int main(int argc, char *argv[]) {
   vector<string> coms;
   g.nextBlock(1);
   g.nextBlock(2);
+  system("clear");
   cout << g;
   cout << "PLAYER 1'S TURN" << endl;
   int pl = 0;
