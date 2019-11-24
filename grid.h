@@ -19,6 +19,7 @@ class Grid {
 	Piece* nxtpc1;
 	std::vector<std::vector<Cell*>> nxtmap1;
 	int uns1;
+	bool bl1;
 	std::vector<std::vector<Cell*>> map2;
 	std::vector<Piece*> move2;
 	Level *lp2;
@@ -27,16 +28,19 @@ class Grid {
 	Piece* nxtpc2;
 	std::vector<std::vector<Cell*>> nxtmap2;
 	int uns2;
+	bool bl2;
 	GraphicDisplay *gd;
 	public:
 		Grid(int l1=0, int l2=0);
 		void nextBlock(int p);
 		void moveBlock(int p, std::string dir);
 		void rotateBlock(int p, bool clock);
-		void dropBlock(int p);
+		int dropBlock(int p);
 		void chngLevel(int p, bool up);
 		int getLevel(int p);
 		int getWinner();
+		void bldPlay(int p);
+		void forceNext(int p, std::string pc);
 		~Grid();
 	friend std::ostream &operator<<(std::ostream &out, const Grid &g);
 };

@@ -84,6 +84,8 @@ Grid::Grid(int l1, int l2) {
 	this->curscore2 = 0;
 	this->uns1 = 0;
 	this->uns2 = 0;
+	this->bl1 = false;
+	this->bl2 = false;
 }
 
 void repeatprinter(ostream &out, string s, int rep, int spc) {
@@ -105,13 +107,23 @@ ostream &operator<<(ostream &out, const Grid &g) {
 	repeatprinter(out, "-", 11, 5);
 	for (int i=0; i < 18; i++) {
 		for (int j=0; j < 11; j++) {
-			out << ((g.map1)[i][j])->getdisp();
+			if ((g.bl1)&&(i>=2)&&(i<=11)&&(j>=2)&&(j>=8)) {
+				out << "?";
+			}
+			else {
+				out << ((g.map1)[i][j])->getdisp();
+			}
 		}
 		for (int j=0; j < 5; j++) {
 			out << ' ';
 		}
 		for (int j=0; j < 11; j++) {
-			out << ((g.map2)[i][j])->getdisp();
+			if ((g.bl2)&&(i>=2)&&(i<=11)&&(j>=2)&&(j<=8)) {
+				out << "?";
+			}
+			else {
+				out << ((g.map2)[i][j])->getdisp();
+			}
 		}
 		out << endl;
 	}
@@ -186,8 +198,10 @@ void Grid::moveBlock(int p, string dir) {
 	}
 }
 
-void  Grid::dropBlock(int p) {
+int Grid::dropBlock(int p) {
+	int rows = 0;
         if (p==1) {
+		bl1 = false;
                 move1[move1.size()-1]->drop();
 		++uns1;
 		for (int j=17; j>=0; j--) {
@@ -198,7 +212,7 @@ void  Grid::dropBlock(int p) {
 						move1.push_back(tp);
 						uns1 = 0;
 					}
-					return;
+					return rows;
 				}
 			}
 			curscore1 += (lev1 + 1) * (lev1 + 1);
@@ -206,9 +220,11 @@ void  Grid::dropBlock(int p) {
 				move1[i]->rowdel();
 			}
 			uns1 = 0;
+			++rows;
 		}
         }
         else {
+		bl2 = false;
                 move2[move2.size()-1]->drop();
 		for (int j=17; j>=0; j--) {
 			for (int i=0; i < 11; i++) {
@@ -218,7 +234,7 @@ void  Grid::dropBlock(int p) {
                                                 move2.push_back(tp);
                                                 uns2 = 0;
                                         }
-                                	return;
+                                	return rows;
                         	}
                 	}
 			curscore2 += (lev2 + 1) * (lev2 + 1);
@@ -226,8 +242,10 @@ void  Grid::dropBlock(int p) {
                        		move2[i]->rowdel();
                 	}
 			uns2 = 0;
+			++rows;
 		}
         }
+	return rows;
 }
 
 void Grid::chngLevel(int p, bool up) {
@@ -254,4 +272,49 @@ int Grid::getWinner() {
 
 int Grid::getLevel(int p) {
 	return p==1?lev1:lev2;
+}
+
+void Grid::bldPlay(int p) {
+	if (p==1) {
+		bl1 = true;
+		return;
+	}
+	bl2 = true;
+}
+
+void Grid::forceNext(int p, string pc) {
+	Piece *nw = nullptr;
+	if (pc=="I") {
+                nw = new PieceI(p==1?map1:map2);
+        }
+        else if (pc=="O") {
+                nw = new PieceO(p==1?map1:map2);
+        }
+        else if (pc=="T") {
+                nw = new PieceT(p==1?map1:map2);
+        }
+        else if (pc=="S") {
+                nw = new PieceS(p==1?map1:map2);
+        }
+        else if (pc=="Z") {
+                nw = new PieceZ(p==1?map1:map2);
+        }
+        else if (pc=="J") {
+                nw = new PieceJ(p==1?map1:map2);
+        }
+        else if (pc=="L") {
+                nw = new PieceL(p==1?map1:map2);
+        }
+	if (p==1) {
+		Piece *tp = move1.back();
+		move1.pop_back();
+		delete tp;
+		move1.push_back(nw);
+	}
+	else {
+		Piece *tp = move2.back();
+		move2.pop_back();
+		delete tp;
+		move2.push_back(nw);
+	}
 }

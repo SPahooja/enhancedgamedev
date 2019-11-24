@@ -52,13 +52,28 @@ int main(int argc, char *argv[]) {
 			cout << g;
 		}
     		else if (coms[0]=="drop") {
-			g.dropBlock((pl%2)+1);
+			int x = 0;
+			x+=g.dropBlock((pl%2)+1);
 			try {
 				if (coms.size()>1) {
 	    				for (int i=1; i<coms.size(); i++) {
 						g.nextBlock((pl%2)+1);
-	    					g.dropBlock((pl%2)+1);
+	    					x+=g.dropBlock((pl%2)+1);
 	    				}
+				}
+				if (x>1) {
+					cout << "PLAYER " << (pl%2)+1 << " HAS ACTIVATED A SPECIAL ACTION!" << endl;
+					cout << "PLEASE ENTER force, heavy, or blind" << endl;
+					cin >> cmd;
+					if (cmd=="force") {
+						cin >> cmd;
+						g.forceNext(((pl+1)%2)+1, cmd);
+					}
+					else if (cmd=="heavy") {
+					}
+					else if (cmd=="blind") {
+						g.bldPlay(((pl+1)%2)+1);
+					}
 				}
 				g.nextBlock((pl%2)+1);
 	    			++pl;
