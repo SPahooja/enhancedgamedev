@@ -86,6 +86,8 @@ Grid::Grid(int l1, int l2) {
 	this->uns2 = 0;
 	this->bl1 = false;
 	this->bl2 = false;
+	this->hv1 = false;
+	this->hv2 = false;
 }
 
 void repeatprinter(ostream &out, string s, int rep, int spc) {
@@ -316,4 +318,16 @@ void Grid::forceNext(int p, string pc) {
                 nw = new PieceL(p==1?map1:map2);
         }
 	p==1?move1.push_back(nw):move2.push_back(nw);
+}
+
+bool Grid::getHeavy(int p) {
+	return p==1?hv1:hv2;
+}
+
+void Grid::setHeavy(int p, bool h) {
+	if (p==1) {
+		hv1 = h;
+		return;
+	}
+	hv2 = h;
 }

@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
   cin.exceptions(ios::eofbit|ios::failbit);
   Grid g;
   string cmd;
+  vector<string> coms;
   g.nextBlock(1);
   g.nextBlock(2);
   cout << g;
@@ -18,7 +19,7 @@ int main(int argc, char *argv[]) {
   try {
   	while (true) {
     		cin >> cmd;
-    		vector<string> coms = autocommand(cmd);
+    		coms = autocommand(cmd);
     		if (coms.size()==0) {
     		}
    		else if ((coms[0]=="right")||(coms[0]=="left")||(coms[0]=="down")) {
@@ -27,6 +28,11 @@ int main(int argc, char *argv[]) {
 	   	 	}
 			int lev = g.getLevel((pl%2)+1);
 			if (lev>=3) {
+				g.moveBlock((pl%2)+1, "down");
+			}
+			bool h = g.getHeavy((pl%2)+1);
+			if ((h)&&(coms[0]!="down")) {
+				g.moveBlock((pl%2)+1, "down");
 				g.moveBlock((pl%2)+1, "down");
 			}
 	    		cout << g;
@@ -52,6 +58,7 @@ int main(int argc, char *argv[]) {
 			cout << g;
 		}
     		else if (coms[0]=="drop") {
+			g.setHeavy((pl%2)+1, false);
 			int x = 0;
 			x+=g.dropBlock((pl%2)+1);
 			try {
@@ -65,13 +72,15 @@ int main(int argc, char *argv[]) {
 					cout << "PLAYER " << (pl%2)+1 << " HAS ACTIVATED A SPECIAL ACTION!" << endl;
 					cout << "PLEASE ENTER force, heavy, or blind" << endl;
 					cin >> cmd;
-					if (cmd=="force") {
+					coms = autocommand(cmd);
+					if (coms[0]=="force") {
 						cin >> cmd;
 						g.forceNext(((pl+1)%2)+1, cmd);
 					}
-					else if (cmd=="heavy") {
+					else if (coms[0]=="heavy") {
+						g.setHeavy(((pl+1)%2)+1, true);
 					}
-					else if (cmd=="blind") {
+					else if (coms[0]=="blind") {
 						g.bldPlay(((pl+1)%2)+1);
 					}
 				}
