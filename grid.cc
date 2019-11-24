@@ -283,6 +283,16 @@ void Grid::bldPlay(int p) {
 }
 
 void Grid::forceNext(int p, string pc) {
+	if (p==1) {
+		Piece *tp = move1.back();
+		move1.pop_back();
+		delete tp;
+	}
+	else {
+		Piece *tp = move2.back();
+		move2.pop_back();
+		delete tp;
+	}
 	Piece *nw = nullptr;
 	if (pc=="I") {
                 nw = new PieceI(p==1?map1:map2);
@@ -305,16 +315,5 @@ void Grid::forceNext(int p, string pc) {
         else if (pc=="L") {
                 nw = new PieceL(p==1?map1:map2);
         }
-	if (p==1) {
-		Piece *tp = move1.back();
-		move1.pop_back();
-		delete tp;
-		move1.push_back(nw);
-	}
-	else {
-		Piece *tp = move2.back();
-		move2.pop_back();
-		delete tp;
-		move2.push_back(nw);
-	}
+	p==1?move1.push_back(nw):move2.push_back(nw);
 }

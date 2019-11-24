@@ -6,8 +6,10 @@ using namespace std;
 
 Piece::~Piece() {
 	for (int i=0; i<4; i++) {
-		(this->ptr)[i]->setdisp(' ');
-		(this->ptr)[i]->setbl(false);
+		if ((this->ptr)[i]!=nullptr) {
+			(this->ptr)[i]->setdisp(' ');
+			(this->ptr)[i]->setbl(false);
+		}
 	}
 }
 
