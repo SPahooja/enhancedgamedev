@@ -31,7 +31,6 @@ int main(int argc, char *argv[]) {
 			if (lev>=3) {
 				g.moveBlock((pl%2)+1, "down");
 			}
-			system("clear");
 	    		cout << g;
     		}
     		else if (coms[0]=="clockwise") {
@@ -42,7 +41,6 @@ int main(int argc, char *argv[]) {
                         if (lev>=3) {
                                 g.moveBlock((pl%2)+1, "down");
                         }
-				system("clear");		
 	    		cout << g;
     		}
     		else if (coms[0]=="counterclockwise") {
@@ -53,7 +51,6 @@ int main(int argc, char *argv[]) {
                         if (lev>=3) {
                                 g.moveBlock((pl%2)+1, "down");
                         }
-			system("clear");			
 			cout << g;
 		}
     		else if (coms[0]=="drop") {
@@ -82,7 +79,6 @@ int main(int argc, char *argv[]) {
 				}
 				g.nextBlock((pl%2)+1);
 	    			++pl;
-					system("clear");
 	    			cout << g;
 				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
 			}
