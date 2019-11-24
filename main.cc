@@ -76,8 +76,14 @@ int main(int argc, char *argv[]) {
 					cin >> cmd;
 					coms = autocommand(cmd);
 					if (coms[0]=="force") {
-						cin >> cmd;
-						g.forceNext(((pl+1)%2)+1, cmd);
+						while(true){
+							cout << "Choose one of I, J, L, O, S, Z or T" << endl;
+							cin >> cmd;
+							if(cmd=="I" ||cmd=="J" ||cmd=="L" ||cmd=="O" ||cmd=="S" ||cmd=="Z" ||cmd=="T"){
+								g.forceNext(((pl+1)%2)+1, cmd);
+								break;
+							}
+						}
 					}
 					else if (coms[0]=="heavy") {
 						g.setHeavy(((pl+1)%2)+1, true);
