@@ -11,6 +11,7 @@ class Level;
 class GraphicDisplay {};
 
 class Grid {
+	//Player 1 Features
 	std::vector<std::vector<Cell*>> map1;
 	std::vector<Piece*> move1;
 	Level *lp1;
@@ -21,6 +22,8 @@ class Grid {
 	int uns1;
 	bool bl1;
 	bool hv1;
+	std::string scf1;
+	//Player 2 Features
 	std::vector<std::vector<Cell*>> map2;
 	std::vector<Piece*> move2;
 	Level *lp2;
@@ -31,9 +34,15 @@ class Grid {
 	int uns2;
 	bool bl2;
 	bool hv2;
+	std::string scf2;
+	//Graphic Display
 	GraphicDisplay *gd;
+	//Randomness Tools
+	int seed;
+	private:
+		Level* makeLevel(int n, int p);
 	public:
-		Grid(int l1=0, int l2=0);
+		Grid(int l1=0, int l2=0, bool grph=true, std::string scf1="sequence1.txt", std::string scf2="sequence2.txt", int seed=0);
 		void nextBlock(int p);
 		void moveBlock(int p, std::string dir);
 		void rotateBlock(int p, bool clock);

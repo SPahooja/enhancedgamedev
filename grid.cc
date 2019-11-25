@@ -48,34 +48,37 @@ void setnext(vector<vector<Cell*>> &mp) {
         }
 }
 
-Level* makeLevel(int n, int p) {
+Level* Grid::makeLevel(int n, int p) {
 	Level *lo = nullptr;
 	if (n==0) {
-		string s = p==1?"sequence1.txt":"sequence2.txt";
+		string s = p==1?this->scf1:this->scf2;
 		lo = new LevelZero(s);
 	}
 	else if (n==1) {
-		lo = new LevelOne(0);
+		lo = new LevelOne(this->seed);
 	}
 	else if (n==2) {
-		lo = new LevelTwo(0);
+		lo = new LevelTwo(this->seed);
 	}
 	else if (n==3) {
-		lo = new LevelThree(0);
+		lo = new LevelThree(this->seed);
 	}
 	else if (n==4) {
-		lo = new LevelFour(0);
+		lo = new LevelFour(this->seed);
 	}
 	return lo;
 }
 
-Grid::Grid(int l1, int l2) {
+Grid::Grid(int l1, int l2, bool grph, string scf1, string scf2, int seed) {
+	this->seed = seed;
 	setmap(this->map1);
 	setmap(this->map2);
 	setnext(this->nxtmap1);
 	setnext(this->nxtmap2);
 	this->lev1 = l1;
 	this->lev2 = l2;
+	this->scf1 = scf1;
+	this->scf2 = scf2;
 	this->lp1 = makeLevel(lev1, 1);
 	this->lp2 = makeLevel(lev2, 2);
 	this->nxtpc1 = lp1->nextPiece(nxtmap1);
@@ -88,6 +91,10 @@ Grid::Grid(int l1, int l2) {
 	this->bl2 = false;
 	this->hv1 = false;
 	this->hv2 = false;
+	this->gd = nullptr;
+	if (grph) {
+		//Initialize graphic display
+	}
 }
 
 void repeatprinter(ostream &out, string s, int rep, int spc) {

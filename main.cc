@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 		++i;
 	}
   	cin.exceptions(ios::eofbit|ios::failbit);
-  	Grid g;
+  	Grid g(lev1, lev2, grph, sf1, sf2, seed);
   	string cmd;
   	bool seq = false;
   	ifstream file;
