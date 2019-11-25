@@ -2,25 +2,59 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <sstream>
 #include "grid.h"
 #include "cell.h"
 #include "autocommand.h"
 using namespace std;
 
 int main(int argc, char *argv[]) {
-  cin.exceptions(ios::eofbit|ios::failbit);
-  Grid g;
-  string cmd;
-  bool seq = false;
-  ifstream file;
-  vector<string> coms;
-  g.nextBlock(1);
-  g.nextBlock(2);
-  system("clear");
-  cout << g;
-  cout << "PLAYER 1'S TURN" << endl;
-  int pl = 0;
-  try {
+	string sf1 = "sequence1.txt";
+	string sf2 = "sequence2.txt";
+	int seed = 0;
+	int lev1 = 0;
+	int lev2 = 0;
+	bool grph = true;
+	int i=1;
+	while (i<argc) {
+		string temp = argv[i];
+		if (temp=="-text") {
+			grph = false;
+		}
+		if (temp=="-seed") {
+			istringstream sock(argv[i+1]);
+			sock >> seed;
+			++i;
+		}
+		if (temp=="-scriptfile1") {
+			sf1 = argv[i+1];
+			++i;
+		}
+		if (temp=="-scriptfile2") {
+			sf2 = argv[i+1];
+			++i;
+		}
+		if (temp=="-startlevel") {
+			istringstream sock(argv[i+1]);
+			sock >> lev1;
+			lev2 = lev1;
+			++i;
+		}
+		++i;
+	}
+  	cin.exceptions(ios::eofbit|ios::failbit);
+  	Grid g;
+  	string cmd;
+  	bool seq = false;
+  	ifstream file;
+  	vector<string> coms;
+ 	g.nextBlock(1);
+  	g.nextBlock(2);
+  	system("clear");
+  	cout << g;
+  	cout << "PLAYER 1'S TURN" << endl;
+  	int pl = 0;
+  	try {
   	while (true) {
     		if (seq) {
 			if (!(file >> cmd)) { seq = false; }
