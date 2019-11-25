@@ -23,6 +23,7 @@ class Grid {
 	bool bl1;
 	bool hv1;
 	std::string scf1;
+	int highscore1;
 	//Player 2 Features
 	std::vector<std::vector<Cell*>> map2;
 	std::vector<Piece*> move2;
@@ -35,6 +36,7 @@ class Grid {
 	bool bl2;
 	bool hv2;
 	std::string scf2;
+	int highscore2;
 	//Graphic Display
 	GraphicDisplay *gd;
 	//Randomness Tools

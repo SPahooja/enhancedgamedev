@@ -15,6 +15,8 @@
 #include "level4.h"
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 void setmap(vector<vector<Cell*>> &mp) {
@@ -95,6 +97,14 @@ Grid::Grid(int l1, int l2, bool grph, string scf1, string scf2, int seed) {
 	if (grph) {
 		//Initialize graphic display
 	}
+	ifstream temp{"highscore.txt"};
+	string tp;
+	temp >> tp;
+	istringstream sock1(tp);
+	sock1 >> this->highscore1;
+	temp >> tp;
+	istringstream sock2(tp);
+	sock2 >> this->highscore2;
 }
 
 void repeatprinter(ostream &out, string s, int rep, int spc) {
@@ -114,6 +124,7 @@ ostream &operator<<(ostream &out, const Grid &g) {
 	system("clear");
 	out << "Level: " << g.lev1 << "        Level: " << g.lev2 << endl;
 	out << "Score: " << g.curscore1 << "        Score: " << g.curscore2 << endl;
+	out << "H Scr: " << g.highscore1 << "        H Scr: " << g.highscore2 << endl;
 	repeatprinter(out, "-", 11, 5);
 	for (int i=0; i < 18; i++) {
 		for (int j=0; j < 11; j++) {
@@ -175,6 +186,11 @@ Grid::~Grid() {
 	}
 	delete lp1;
 	delete lp2;
+	ofstream temp;
+	temp.open("highscore.txt");
+	temp << this->highscore1 << endl;
+	temp << this->highscore2 << endl;
+	temp.close();
 }
 
 void Grid::nextBlock(int p) {
@@ -231,6 +247,9 @@ int Grid::dropBlock(int p) {
 			}
 			uns1 = 0;
 			++rows;
+			if (curscore1 > highscore1) {
+				highscore1 = curscore1;
+			}
 		}
         }
         else {
@@ -253,6 +272,9 @@ int Grid::dropBlock(int p) {
                 	}
 			uns2 = 0;
 			++rows;
+			if (curscore2 > highscore2) {
+				highscore2 = curscore2;
+			}
 		}
         }
 	return rows;
