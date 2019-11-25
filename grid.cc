@@ -355,3 +355,32 @@ void Grid::chngRandom(int p, string fl) {
 		}
 	}
 }
+
+void Grid::restartGame(int l1, int l2) {
+	for (int i=move1.size()-1; i>=0; i--) {
+                delete move1[i];
+		move1.pop_back();
+        }
+        for (int j=move2.size()-1; j>=0; j--) {
+                delete move2[j];
+		move2.pop_back();
+        }
+        delete nxtpc1;
+        delete nxtpc2;
+	delete lp1;
+	delete lp2;
+	this->lev1 = l1;
+	this->lev2 = l2;
+        this->lp1 = makeLevel(lev1, 1);
+        this->lp2 = makeLevel(lev2, 2);
+        this->nxtpc1 = lp1->nextPiece(nxtmap1);
+        this->nxtpc2 = lp2->nextPiece(nxtmap2);
+        this->curscore1 = 0;
+        this->curscore2 = 0;
+        this->uns1 = 0;
+        this->uns2 = 0;
+        this->bl1 = false;
+        this->bl2 = false;
+        this->hv1 = false;
+        this->hv2 = false;
+}

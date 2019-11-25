@@ -46,6 +46,7 @@ class Grid {
 		void forceNext(int p, std::string pc);
 		bool getHeavy(int p);
 		void setHeavy(int p, bool h);
+		void restartGame(int l1=0, int l2=0);
 		~Grid();
 	friend std::ostream &operator<<(std::ostream &out, const Grid &g);
 };

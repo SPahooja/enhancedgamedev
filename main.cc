@@ -11,6 +11,8 @@ int main(int argc, char *argv[]) {
   cin.exceptions(ios::eofbit|ios::failbit);
   Grid g;
   string cmd;
+  bool seq = false;
+  ifstream file;
   vector<string> coms;
   g.nextBlock(1);
   g.nextBlock(2);
@@ -20,7 +22,12 @@ int main(int argc, char *argv[]) {
   int pl = 0;
   try {
   	while (true) {
-    		cin >> cmd;
+    		if (seq) {
+			if (!(file >> cmd)) { seq = false; }
+		}
+		if (!seq) {
+			cin >> cmd;
+		}
     		coms = autocommand(cmd);
     		if (coms.size()==0) {
     		}
@@ -73,12 +80,22 @@ int main(int argc, char *argv[]) {
 				if (x>1) {
 					cout << "PLAYER " << (pl%2)+1 << " HAS ACTIVATED A SPECIAL ACTION!" << endl;
 					cout << "PLEASE ENTER force, heavy, or blind" << endl;
-					cin >> cmd;
+					if (seq) {
+						if (!(file >> cmd)) { seq = false; }
+					}
+					if (!seq) {
+						cin >> cmd;
+					}
 					coms = autocommand(cmd);
 					if (coms[0]=="force") {
 						while(true){
 							cout << "Choose one of I, J, L, O, S, Z or T" << endl;
-							cin >> cmd;
+							if (seq) {
+								if (!(file >> cmd)) { seq = false; }
+							}
+							if (!seq) {
+								cin >> cmd;
+							}
 							if(cmd=="I" ||cmd=="J" ||cmd=="L" ||cmd=="O" ||cmd=="S" ||cmd=="Z" ||cmd=="T"){
 								g.forceNext(((pl+1)%2)+1, cmd);
 								break;
@@ -109,11 +126,33 @@ int main(int argc, char *argv[]) {
 			}
 		}
 		else if (coms[0]=="norandom") {
-			cin >> cmd;
+			if (seq) {
+				if (!(file >> cmd)) { seq = false; }
+			}
+			if (!seq) {
+				cin >> cmd;
+			}
 			g.chngRandom((pl%2)+1, cmd);
 		}
 		else if (coms[0]=="random") {
 			g.chngRandom((pl%2)+1, "");
+		}
+		else if (coms[0]=="sequence") {
+			if (seq) {
+				if (!(file >> cmd)) { seq = false; }
+			}
+			if  (!seq) {
+				cin >> cmd;
+			}
+			file.open(cmd);
+			seq = true;
+		}
+		else if (coms[0]=="restart") {
+			  g.restartGame();
+			  g.nextBlock(1);
+			  g.nextBlock(2);
+			  cout << g;
+			  cout << "PLAYER 1'S TURN" << endl;
 		}
   	}
   }
