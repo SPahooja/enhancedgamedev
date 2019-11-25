@@ -148,11 +148,23 @@ int main(int argc, char *argv[]) {
 			seq = true;
 		}
 		else if (coms[0]=="restart") {
-			  g.restartGame();
-			  g.nextBlock(1);
-			  g.nextBlock(2);
-			  cout << g;
-			  cout << "PLAYER 1'S TURN" << endl;
+		while(true){
+			cout<< "Are you sure? (Y/N) " << endl;
+			cin >> cmd;
+			if(cmd == "Y" || cmd =="y"){
+				g.restartGame();
+				g.nextBlock(1);
+				g.nextBlock(2);
+				cout << g;
+				cout << "PLAYER 1'S TURN" << endl;
+				break;
+			}
+			else if (cmd == "N" || cmd == "n"){
+				cout << g;
+				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
+			break;
+			}
+		}
 		}
   	}
   }
