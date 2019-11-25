@@ -141,30 +141,33 @@ int main(int argc, char *argv[]) {
 			if (seq) {
 				if (!(file >> cmd)) { seq = false; }
 			}
-			if  (!seq) {
+			if (!seq) {
 				cin >> cmd;
 			}
 			file.open(cmd);
 			seq = true;
 		}
 		else if (coms[0]=="restart") {
-		while(true){
-			cout<< "Are you sure? (Y/N) " << endl;
-			cin >> cmd;
-			if(cmd == "Y" || cmd =="y"){
-				g.restartGame();
-				g.nextBlock(1);
-				g.nextBlock(2);
-				cout << g;
-				cout << "PLAYER 1'S TURN" << endl;
-				break;
+			while (true) {
+				cout<< "Are you sure you want to restart? (Y/N)" << endl;
+				if (seq) {
+					if (!(file >> cmd)) { seq = false; }
+				}
+				if (!seq) {
+					cin >> cmd;
+				}
+				if (cmd == "Y" || cmd =="y"){
+					g.restartGame();
+					g.nextBlock(1);
+					g.nextBlock(2);
+					cout << g;
+					cout << "PLAYER 1'S TURN" << endl;
+					break;
+				}
+				else if (cmd == "N" || cmd == "n"){
+					break;
+				}
 			}
-			else if (cmd == "N" || cmd == "n"){
-				cout << g;
-				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
-			break;
-			}
-		}
 		}
   	}
   }
