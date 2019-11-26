@@ -79,6 +79,7 @@ int main(int argc, char *argv[]) {
 				g.moveBlock((pl%2)+1, "down");
 			}
 	    		cout << g;
+				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
     		}
     		else if (coms[0]=="clockwise") {
 	    		for (int i=0; i < coms.size(); i++) {
@@ -89,6 +90,7 @@ int main(int argc, char *argv[]) {
                                 g.moveBlock((pl%2)+1, "down");
                         }
 	    		cout << g;
+				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
     		}
     		else if (coms[0]=="counterclockwise") {
 			for (int i=0; i < coms.size(); i++) {
@@ -99,6 +101,7 @@ int main(int argc, char *argv[]) {
                                 g.moveBlock((pl%2)+1, "down");
                         }
 			cout << g;
+			cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
 		}
     		else if (coms[0]=="drop") {
 			g.setHeavy((pl%2)+1, false);
