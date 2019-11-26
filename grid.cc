@@ -230,53 +230,61 @@ int Grid::dropBlock(int p) {
 		bl1 = false;
                 move1[move1.size()-1]->drop();
 		++uns1;
-		for (int j=17; j>=0; j--) {
+		for (int j=17; j>=0;) {
+			bool clear = true;
 			for (int i=0; i < 11; i++) {
-				if (!(map1[17][i]->getbl())) {
-					if ((lev1==4)&&(uns1>=5)) {
-						Piece *tp = new PieceStar(map1);
-						move1.push_back(tp);
-						uns1 = 0;
-					}
-					return rows;
+				if (!(map1[j][i]->getbl())) { clear = false; }
+			}
+			if (clear) {
+				curscore1 += (lev1 + 1) * (lev1 + 1);
+				for (int i=0; i < move1.size(); i++) {
+					move1[i]->rowdel(j);
+				}
+				uns1 = 0;
+				++rows;
+				if (curscore1 > highscore1) {
+					highscore1 = curscore1;
 				}
 			}
-			curscore1 += (lev1 + 1) * (lev1 + 1);
-			for (int i=0; i < move1.size(); i++) {
-				move1[i]->rowdel();
+			else {
+				--j;
 			}
+		}
+		if ((lev1==4)&&(uns1>=5)) {
+			Piece *tp = new PieceStar(map1);
+			move1.push_back(tp);
 			uns1 = 0;
-			++rows;
-			if (curscore1 > highscore1) {
-				highscore1 = curscore1;
-			}
 		}
         }
         else {
 		bl2 = false;
                 move2[move2.size()-1]->drop();
-		for (int j=17; j>=0; j--) {
+		for (int j=17; j>=0;) {
+			bool clear = true;
 			for (int i=0; i < 11; i++) {
-                        	if (!(map2[17][i]->getbl())) {
-					if ((lev2==4)&&(uns2>=5)) {
-                                                Piece *tp = new PieceStar(map2);
-                                                move2.push_back(tp);
-                                                uns2 = 0;
-                                        }
-                                	return rows;
-                        	}
+                        	if (!(map2[j][i]->getbl())) { clear = false; }
                 	}
-			curscore2 += (lev2 + 1) * (lev2 + 1);
-                	for (int i=0; i < move2.size(); i++) {
-                       		move2[i]->rowdel();
-                	}
-			uns2 = 0;
-			++rows;
-			if (curscore2 > highscore2) {
-				highscore2 = curscore2;
+			if (clear) {
+				curscore2 += (lev2 + 1) * (lev2 + 1);
+                		for (int i=0; i < move2.size(); i++) {
+                       			move2[i]->rowdel(j);
+                		}
+				uns2 = 0;
+				++rows;
+				if (curscore2 > highscore2) {
+					highscore2 = curscore2;
+				}
+			}
+			else {
+				--j;
 			}
 		}
-        }
+		if ((lev2==4)&&(uns2>=5)) {
+			Piece *tp = new PieceStar(map2);
+                        move2.push_back(tp);
+                        uns2 = 0;
+                }
+	}
 	return rows;
 }
 

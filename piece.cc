@@ -48,7 +48,7 @@ void Piece::movepos(string dir) {
 	}
 }
 
-void Piece::rowdel() {
+void Piece::rowdel(int j) {
 	this->valid = 0;
 	for (int i=0; i < 4; i++) {
 		if (ptr[i]!=nullptr) {
@@ -58,7 +58,12 @@ void Piece::rowdel() {
 	}
 	for (int i=0; i < 4; i++) {
 		if (ptr[i]!=nullptr) {
-			ptr[i] = ptr[i]->getDown();
+			if (ptr[i]->getrow()==j) {
+				ptr[i] = nullptr;
+			}
+			else if (ptr[i]->getrow()<j) {
+				ptr[i] = ptr[i]->getDown();
+			}
 		}
 		if (ptr[i]!=nullptr) {
 			this->valid += 1;
