@@ -6,7 +6,6 @@
 using namespace std;
 
 PieceI::PieceI(vector<vector<Cell*>> &t) {
-	this->valid = 4;
 	this->disp = 'I';
 	for (int i=0; i < 4; i++) {
 		(this->ptr).push_back(t[3][i]);

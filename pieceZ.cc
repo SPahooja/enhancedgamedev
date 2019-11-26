@@ -6,7 +6,6 @@
 using namespace std;
 
 PieceZ::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
-    this->valid = 4;
     this->disp = 'Z';
     for (int i = 0; i <= 1; ++i) {
         (this->ptr).push_back(t[2][i]);

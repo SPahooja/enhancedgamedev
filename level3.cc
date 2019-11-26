@@ -3,7 +3,7 @@
 #include <cstdlib>
 using namespace std;
 
-LevelThree::LevelThree(int s, string file): seed{s} {
+LevelThree::LevelThree(int s, string file) {
 	srand(s);
 	this->pos = 0;
 	this->len = 0;

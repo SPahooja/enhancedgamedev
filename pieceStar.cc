@@ -6,7 +6,6 @@
 using namespace std;
 
 PieceStar::PieceStar(vector<vector<Cell*>> &t) {
-	this->valid = 1;
 	this->disp = '*';
 	int i=2;
 	while ((i<17)&&(!t[i+1][5]->getbl())) {

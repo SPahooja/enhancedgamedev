@@ -49,7 +49,6 @@ void Piece::movepos(string dir) {
 }
 
 void Piece::rowdel(int j) {
-	this->valid = 0;
 	for (int i=0; i < 4; i++) {
 		if (ptr[i]!=nullptr) {
 			ptr[i]->setdisp(' ');
@@ -66,7 +65,6 @@ void Piece::rowdel(int j) {
 			}
 		}
 		if (ptr[i]!=nullptr) {
-			this->valid += 1;
 			ptr[i]->setdisp(this->disp);
 			ptr[i]->setbl(true);
 		}

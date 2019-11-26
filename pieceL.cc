@@ -5,7 +5,6 @@
 using namespace std;
 
 PieceL::PieceL(vector<vector<Cell*>> &t) {
-	this->valid = 4;
     	this->disp = 'L';
 	(this->ptr).push_back(t[2][2]);
 	(this->ptr).push_back(t[3][2]);

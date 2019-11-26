@@ -13,17 +13,20 @@
 #include "level2.h"
 #include "level3.h"
 #include "level4.h"
+#include "subject.h"
+#include "state.h"
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <sstream>
 using namespace std;
 
-void setmap(vector<vector<Cell*>> &mp) {
+void setmap(vector<vector<Cell*>> &mp, Position p, Observer *td) {
 	for (int i=0; i < 18; i++) {
                 vector<Cell*> temp;
                 for (int j=0; j < 11; j++) {
-                        Cell *tp = new Cell{i, j};
+                        Cell *tp = new Cell{i, j, p};
+			tp->attach(td);
                         temp.push_back(tp);
                 }
                 mp.push_back(temp);
@@ -39,11 +42,12 @@ void setmap(vector<vector<Cell*>> &mp) {
         }
 }
 
-void setnext(vector<vector<Cell*>> &mp) {
+void setnext(vector<vector<Cell*>> &mp, Position p, Observer *td) {
         for (int i=0; i < 4; i++) {
                 vector<Cell*> temp;
                 for (int j=0; j < 11; j++) {
-                        Cell *tp = new Cell{i, j};
+                        Cell *tp = new Cell{i, j, p};
+			tp->attach(td);
                         temp.push_back(tp);
                 }
                 mp.push_back(temp);
@@ -73,10 +77,11 @@ Level* Grid::makeLevel(int n, int p) {
 
 Grid::Grid(int l1, int l2, bool grph, string scf1, string scf2, int seed) {
 	this->seed = seed;
-	setmap(this->map1);
-	setmap(this->map2);
-	setnext(this->nxtmap1);
-	setnext(this->nxtmap2);
+	this->td = new TextDisplay;
+	setmap(this->map1, Position::MainMap1, this->td);
+	setmap(this->map2, Position::MainMap2, this->td);
+	setnext(this->nxtmap1, Position::NextMap1, this->td);
+	setnext(this->nxtmap2, Position::NextMap2, this->td);
 	this->lev1 = l1;
 	this->lev2 = l2;
 	this->scf1 = scf1;
@@ -126,42 +131,10 @@ ostream &operator<<(ostream &out, const Grid &g) {
 	out << "Score: " << g.curscore1 << "        Score: " << g.curscore2 << endl;
 	out << "H Scr: " << g.highscore1 << "        H Scr: " << g.highscore2 << endl;
 	repeatprinter(out, "-", 11, 5);
-	for (int i=0; i < 18; i++) {
-		for (int j=0; j < 11; j++) {
-			if ((g.bl1)&&(i>=2)&&(i<=11)&&(j>=2)&&(j>=8)) {
-				out << "?";
-			}
-			else {
-				out << ((g.map1)[i][j])->getdisp();
-			}
-		}
-		for (int j=0; j < 5; j++) {
-			out << ' ';
-		}
-		for (int j=0; j < 11; j++) {
-			if ((g.bl2)&&(i>=2)&&(i<=11)&&(j>=2)&&(j<=8)) {
-				out << "?";
-			}
-			else {
-				out << ((g.map2)[i][j])->getdisp();
-			}
-		}
-		out << endl;
-	}
+	g.td->printMain(out, g.bl1, g.bl2);
 	repeatprinter(out, "-", 11, 5);
 	out << "Next:           Next:" << endl;
-	for (int i=0; i < 4; i++) {
-		for (int j=0; j < 11; j++) {
-			out << ((g.nxtmap1)[i][j])->getdisp();
-		}
-		for (int j=0; j < 5; j++) {
-			out << ' ';
-		}
-		for (int j=0; j < 11; j++) {
-			out << ((g.nxtmap2)[i][j])->getdisp();
-		}
-		out << endl;
-	}
+	g.td->printNext(out);
 	return out;
 }
 
@@ -186,6 +159,7 @@ Grid::~Grid() {
 	}
 	delete lp1;
 	delete lp2;
+	delete td;
 	ofstream temp;
 	temp.open("highscore.txt");
 	temp << this->highscore1 << endl;
@@ -406,6 +380,8 @@ void Grid::restartGame(int l1, int l2) {
         delete nxtpc2;
 	delete lp1;
 	delete lp2;
+	delete td;
+	this->td = new TextDisplay;
 	this->lev1 = l1;
 	this->lev2 = l2;
         this->lp1 = makeLevel(lev1, 1);

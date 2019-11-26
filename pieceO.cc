@@ -5,7 +5,6 @@
 using namespace std;
 
 PieceO::PieceO(vector<vector<Cell*>> &t) {
-	this->valid = 4;
 	this->disp = 'O';
 	(this->ptr).push_back(t[2][0]);
 	(this->ptr).push_back(t[2][1]);

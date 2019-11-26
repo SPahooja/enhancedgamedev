@@ -1,11 +1,12 @@
 #include "cell.h"
 #include <iostream>
 
-Cell::Cell(int r, int c) {
+Cell::Cell(int r, int c, Position p) {
 	this->row = r;
 	this->col = c;
 	this->isoccup = false;
 	this->disp = ' ';
+	this->p = p;
 }
 
 Cell* Cell::getLeft() const { return this->left; }
@@ -25,7 +26,11 @@ void Cell::setDir(Cell* l, Cell* r, Cell* u, Cell* d) {
 
 char Cell::getdisp() const { return this->disp; }
 
-void Cell::setdisp(char c) { this->disp = c; }
+void Cell::setdisp(char c) { 
+	this->disp = c;
+	this->setState({row, col, disp, p});
+	this->notifyObservers();
+}
 
 bool Cell::getbl() const { return this->isoccup; }
 

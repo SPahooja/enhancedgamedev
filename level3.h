@@ -16,7 +16,6 @@ class Piece;
 class Cell;
 
 class LevelThree: public Level {
-	int seed;
 	bool random;
         std::string file;
         int pos;

@@ -1,6 +1,7 @@
 #ifndef GRID_H
 #define GRID_H
 #include "cell.h"
+#include "textdisplay.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -8,6 +9,7 @@
 class Cell;
 class Piece;
 class Level;
+class TextDisplay;
 class GraphicDisplay {};
 
 class Grid {
@@ -37,8 +39,9 @@ class Grid {
 	bool hv2;
 	std::string scf2;
 	int highscore2;
-	//Graphic Display
+	//Display
 	GraphicDisplay *gd;
+	TextDisplay *td;
 	//Randomness Tools
 	int seed;
 	private:

@@ -10,7 +10,6 @@ class Cell;
 class Piece {
 	protected:
 		char disp;
-		int valid;
 		std::vector<Cell*> ptr;
 	public:
 		void movepos(std::string dir);

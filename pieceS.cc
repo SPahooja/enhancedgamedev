@@ -6,7 +6,6 @@
 using namespace std;
 
 PieceS::PieceS(vector<vector<Cell*>> &t) {              // Creating at top-left
-    this->valid = 4;
     this->disp = 'S';
     for (int i = 2; i >= 1; --i) {
         (this->ptr).push_back(t[2][i]);

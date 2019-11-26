@@ -1,9 +1,12 @@
 #ifndef CELL_H
 #define CELL_H
+#include "subject.h"
+#include "state.h"
 #include <iostream>
 
-class Cell {
+class Cell: public Subject {
 	int row, col;
+	Position p;
 	bool isoccup;
 	char disp;
 	Cell *left;
@@ -11,7 +14,7 @@ class Cell {
 	Cell *up;
 	Cell *down;
 	public:
-		Cell(int r, int c);
+		Cell(int r, int c, Position p);
 		Cell *getLeft() const;
 		Cell *getRight() const;
 		Cell *getUp() const;
