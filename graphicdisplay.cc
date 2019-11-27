@@ -16,9 +16,27 @@ GraphicDisplay::GraphicDisplay(int lev1, int hscr1, int lev2, int hscr2) {
 	xw.fillRectangle(0, 400, 500, 20, 1); //Next bar
 	xw.fillRectangle(220, 0, 60, 500, 1); //Player separator
 	this->updateStats(lev1, 0, hscr1, lev2, 0, hscr2);
+	char pcs[9] = {' ', '-', 'I', 'O', 'T', 'Z', 'S', 'J', 'L'};
+	for (int i=0; i<9; i++) {
+		colourmap[pcs[i]] = i;
+	}
 }
 
-void GraphicDisplay::notify(Subject &whoNotified) {}
+void GraphicDisplay::notify(Subject &whoNotified) {
+	State tp = whoNotified.getState();
+	if (tp.p==Position::MainMap1) {
+		xw.fillRectangle(20 * tp.col, 40 + 20 * tp.row, 20, 20, colourmap[tp.disp]);
+	}
+	else if (tp.p==Position::MainMap2) {
+		xw.fillRectangle(280 + 20 * tp.col, 40 + 20 * tp.row, 20, 20, colourmap[tp.disp]);
+	}
+	else if (tp.p==Position::NextMap1) {
+		xw.fillRectangle(20 * tp.col, 420 + 20 * tp.row, 20, 20, colourmap[tp.disp]);
+	}
+	else if (tp.p==Position::NextMap2) {
+		xw.fillRectangle(280 + 20 * tp.col, 420 + 20 * tp.row, 20, 20, colourmap[tp.disp]);
+	}
+}
 
 void GraphicDisplay::updateStats(int lev1, int scr1, int hscr1, int lev2, int scr2, int hscr2) {
 	xw.fillRectangle(0, 0, 500, 40, 1); //Cover old scores

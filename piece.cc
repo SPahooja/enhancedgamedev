@@ -72,20 +72,25 @@ void Piece::rowdel(int j) {
 }
 
 void Piece::drop() {
-	while (true) {
+	for (int i=0; i<4; i++) {
+		ptr[i]->setdisp(' ');
+		ptr[i]->setbl(false);
+	}
+	bool cont = true;
+	while (cont) {
 		for (int i=0; i < 4; i++) {
 			if ((ptr[i]->getDown()==nullptr)||((ptr[i]->getDown()->getbl())&&(ptr[i]->getDown()!=ptr[0])&&(ptr[i]->getDown()!=ptr[1])&&(ptr[i]->getDown()!=ptr[2])&&(ptr[i]->getDown()!=ptr[3]))) {
-				return;
+				cont = false;
 			}
 		}
-		for (int i=0; i < 4; i++) {
-			ptr[i]->setdisp(' ');
-			ptr[i]->setbl(false);
+		if (cont) {
+			for (int i=0; i<4; i++) {
+				ptr[i] = ptr[i]->getDown();
+			}
 		}
-		for (int i=0; i < 4; i++) {
-			ptr[i] = ptr[i]->getDown();
-			ptr[i]->setdisp(this->disp);
-			ptr[i]->setbl(true);
-		}
+	}
+	for (int i=0; i < 4; i++) {
+		ptr[i]->setdisp(this->disp);
+		ptr[i]->setbl(true);
 	}
 }
