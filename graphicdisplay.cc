@@ -14,6 +14,8 @@ using namespace std;
 GraphicDisplay::GraphicDisplay(int lev1, int hscr1, int lev2, int hscr2) {
 	xw.fillRectangle(0, 0, 500, 500, 0);
 	xw.fillRectangle(0, 400, 500, 20, 1); //Next bar
+	xw.drawString(10, 415, "Next:", 0);
+	xw.drawString(290, 415, "Next:", 0);
 	xw.fillRectangle(220, 0, 60, 500, 1); //Player separator
 	this->updateStats(lev1, 0, hscr1, lev2, 0, hscr2);
 	char pcs[9] = {' ', '-', 'I', 'O', 'T', 'Z', 'S', 'J', 'L'};
