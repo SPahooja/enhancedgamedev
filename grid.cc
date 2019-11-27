@@ -81,13 +81,21 @@ Level* Grid::makeLevel(int n, int p) {
 }
 
 Grid::Grid(int l1, int l2, bool grph, string scf1, string scf2, int seed) {
+	ifstream temp{"highscore.txt"};
+	string tp;
+	temp >> tp;
+	istringstream sock1(tp);
+	sock1 >> this->highscore1;
+	temp >> tp;
+	istringstream sock2(tp);
+	sock2 >> this->highscore2;
 	this->seed = seed;
 	vector<Observer*> disp;
 	this->td = new TextDisplay;
 	disp.push_back(this->td);
 	this->gd = nullptr;
 	if (grph) {
-		this->gd = new GraphicDisplay;
+		this->gd = new GraphicDisplay(l1, this->highscore1, l2, this->highscore2);
 		disp.push_back(this->gd);
 	}
 	setmap(this->map1, Position::MainMap1, disp);
@@ -110,14 +118,6 @@ Grid::Grid(int l1, int l2, bool grph, string scf1, string scf2, int seed) {
 	this->bl2 = false;
 	this->hv1 = false;
 	this->hv2 = false;
-	ifstream temp{"highscore.txt"};
-	string tp;
-	temp >> tp;
-	istringstream sock1(tp);
-	sock1 >> this->highscore1;
-	temp >> tp;
-	istringstream sock2(tp);
-	sock2 >> this->highscore2;
 }
 
 void repeatprinter(ostream &out, string s, int rep, int spc) {
@@ -268,6 +268,9 @@ int Grid::dropBlock(int p) {
                         uns2 = 0;
                 }
 	}
+	if (rows>0) {
+		this->gd->updateStats(lev1, curscore1, highscore1, lev2, curscore2, highscore2);
+	}
 	return rows;
 }
 
@@ -284,6 +287,7 @@ void Grid::chngLevel(int p, bool up) {
 		lev2= up?lev2+1:lev2-1;
 		lp2 = makeLevel(lev2, p);
 	}
+	this->gd->updateStats(lev1, curscore1, highscore1, lev2, curscore2, highscore2);
 }
 
 int Grid::getWinner() {
@@ -393,7 +397,7 @@ void Grid::restartGame(int l1, int l2) {
 	this->td = new TextDisplay;
 	if (this->gd != nullptr) {
 		delete gd;
-		gd = new GraphicDisplay;
+		gd = new GraphicDisplay(l1, this->highscore1, l2, this->highscore2);
 	}
 	this->lev1 = l1;
 	this->lev2 = l2;

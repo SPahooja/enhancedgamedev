@@ -194,7 +194,7 @@ int main(int argc, char *argv[]) {
 					cin >> cmd;
 				}
 				if (cmd == "Y" || cmd =="y"){
-					g.restartGame();
+					g.restartGame(lev1, lev2);
 					g.nextBlock(1);
 					g.nextBlock(2);
 					cout << g;
