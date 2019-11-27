@@ -10,7 +10,7 @@ class Cell;
 class Piece;
 class Level;
 class TextDisplay;
-class GraphicDisplay {};
+class GraphicDisplay;
 
 class Grid {
 	//Player 1 Features

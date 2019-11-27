@@ -15,18 +15,21 @@
 #include "level4.h"
 #include "subject.h"
 #include "state.h"
+#include "graphicdisplay.h"
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <sstream>
 using namespace std;
 
-void setmap(vector<vector<Cell*>> &mp, Position p, Observer *td) {
+void setmap(vector<vector<Cell*>> &mp, Position p, vector<Observer*> disp) {
 	for (int i=0; i < 18; i++) {
                 vector<Cell*> temp;
                 for (int j=0; j < 11; j++) {
                         Cell *tp = new Cell{i, j, p};
-			tp->attach(td);
+			for (int k=0; k<disp.size(); k++) {
+				tp->attach(disp[k]);
+			}
                         temp.push_back(tp);
                 }
                 mp.push_back(temp);
@@ -42,12 +45,14 @@ void setmap(vector<vector<Cell*>> &mp, Position p, Observer *td) {
         }
 }
 
-void setnext(vector<vector<Cell*>> &mp, Position p, Observer *td) {
+void setnext(vector<vector<Cell*>> &mp, Position p, vector<Observer*> disp) {
         for (int i=0; i < 4; i++) {
                 vector<Cell*> temp;
                 for (int j=0; j < 11; j++) {
                         Cell *tp = new Cell{i, j, p};
-			tp->attach(td);
+			for (int k=0; k<disp.size(); k++) {
+				tp->attach(disp[k]);
+			}
                         temp.push_back(tp);
                 }
                 mp.push_back(temp);
@@ -77,11 +82,18 @@ Level* Grid::makeLevel(int n, int p) {
 
 Grid::Grid(int l1, int l2, bool grph, string scf1, string scf2, int seed) {
 	this->seed = seed;
+	vector<Observer*> disp;
 	this->td = new TextDisplay;
-	setmap(this->map1, Position::MainMap1, this->td);
-	setmap(this->map2, Position::MainMap2, this->td);
-	setnext(this->nxtmap1, Position::NextMap1, this->td);
-	setnext(this->nxtmap2, Position::NextMap2, this->td);
+	disp.push_back(this->td);
+	this->gd = nullptr;
+	if (grph) {
+		this->gd = new GraphicDisplay;
+		disp.push_back(this->gd);
+	}
+	setmap(this->map1, Position::MainMap1, disp);
+	setmap(this->map2, Position::MainMap2, disp);
+	setnext(this->nxtmap1, Position::NextMap1, disp);
+	setnext(this->nxtmap2, Position::NextMap2, disp);
 	this->lev1 = l1;
 	this->lev2 = l2;
 	this->scf1 = scf1;
@@ -98,10 +110,6 @@ Grid::Grid(int l1, int l2, bool grph, string scf1, string scf2, int seed) {
 	this->bl2 = false;
 	this->hv1 = false;
 	this->hv2 = false;
-	this->gd = nullptr;
-	if (grph) {
-		//Initialize graphic display
-	}
 	ifstream temp{"highscore.txt"};
 	string tp;
 	temp >> tp;
@@ -160,6 +168,7 @@ Grid::~Grid() {
 	delete lp1;
 	delete lp2;
 	delete td;
+	delete gd;
 	ofstream temp;
 	temp.open("highscore.txt");
 	temp << this->highscore1 << endl;
@@ -382,6 +391,10 @@ void Grid::restartGame(int l1, int l2) {
 	delete lp2;
 	delete td;
 	this->td = new TextDisplay;
+	if (this->gd != nullptr) {
+		delete gd;
+		gd = new GraphicDisplay;
+	}
 	this->lev1 = l1;
 	this->lev2 = l2;
         this->lp1 = makeLevel(lev1, 1);
