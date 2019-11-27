@@ -37,26 +37,16 @@ void TextDisplay::notify(Subject &whoNotified) {
 	}
 }
 
-void TextDisplay::printMain(ostream &out, bool bl1, bool bl2) {
+void TextDisplay::printMain(ostream &out) {
 	for (int i=0; i < 18; i++) {
                 for (int j=0; j < 11; j++) {
-                        if ((bl1)&&(i>=2)&&(i<=11)&&(j>=2)&&(j>=8)) {
-                                out << "?";
-                        }
-                        else {
-                                out << MainMap1[i][j];
-                        }
+			out << MainMap1[i][j];
                 }
                 for (int j=0; j < 5; j++) {
                         out << ' ';
                 }
                 for (int j=0; j < 11; j++) {
-                        if ((bl2)&&(i>=2)&&(i<=11)&&(j>=2)&&(j<=8)) {
-                                out << "?";
-                        }
-                        else {
-                                out << MainMap2[i][j];
-                        }
+			out << MainMap2[i][j];
                 }
                 out << endl;
         }

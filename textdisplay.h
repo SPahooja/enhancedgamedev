@@ -14,7 +14,7 @@ class TextDisplay: public Observer {
  public:
   TextDisplay();
   void notify(Subject &whoNotified) override;
-  void printMain(std::ostream &out, bool bl1, bool bl2);
+  void printMain(std::ostream &out);
   void printNext(std::ostream &out);
 };
 #endif

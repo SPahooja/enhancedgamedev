@@ -39,3 +39,13 @@ void Cell::setbl(bool b) { this->isoccup = b; }
 int Cell::getrow() const { return this->row; }
 
 int Cell::getcol() const { return this->col; }
+
+void Cell::makeblind() {
+	this->setState({row, col, '?', p});
+	this->notifyObservers();
+}
+
+void Cell::removeblind() {
+	this->setState({row, col, this->disp, p});
+	this->notifyObservers();
+}

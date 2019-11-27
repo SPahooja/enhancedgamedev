@@ -139,7 +139,7 @@ ostream &operator<<(ostream &out, const Grid &g) {
 	out << "Score: " << g.curscore1 << "        Score: " << g.curscore2 << endl;
 	out << "H Scr: " << g.highscore1 << "        H Scr: " << g.highscore2 << endl;
 	repeatprinter(out, "-", 11, 5);
-	g.td->printMain(out, g.bl1, g.bl2);
+	g.td->printMain(out);
 	repeatprinter(out, "-", 11, 5);
 	out << "Next:           Next:" << endl;
 	g.td->printNext(out);
@@ -210,7 +210,14 @@ void Grid::moveBlock(int p, string dir, int c) {
 int Grid::dropBlock(int p) {
 	int rows = 0;
         if (p==1) {
-		bl1 = false;
+		if (bl1) {
+			for (int i=3; i<12; i++) {
+				for (int j=3; j<9; j++) {
+					(this->map1)[i][j]->removeblind();
+				}
+			}
+			bl1 = false;
+		}
                 move1[move1.size()-1]->drop();
 		++uns1;
 		for (int j=17; j>=0;) {
@@ -240,7 +247,14 @@ int Grid::dropBlock(int p) {
 		}
         }
         else {
-		bl2 = false;
+		if (bl2) {
+			for (int i=3; i<12; i++) {
+				for (int j=3; j<9; j++) {
+					(this->map2)[i][j]->removeblind();
+				}
+			}
+			bl2 = false;
+		}
                 move2[move2.size()-1]->drop();
 		for (int j=17; j>=0;) {
 			bool clear = true;
@@ -320,9 +334,19 @@ int Grid::getLevel(int p) {
 void Grid::bldPlay(int p) {
 	if (p==1) {
 		bl1 = true;
+		for (int i=3; i<12; i++) {
+			for (int j=3; j<9; j++) {
+				(this->map1)[i][j]->makeblind();
+			}
+		}
 		return;
 	}
 	bl2 = true;
+	for (int i=3; i<12; i++) {
+		for (int j=3; j<9; j++) {
+			(this->map2)[i][j]->makeblind();
+		}
+	}
 }
 
 void Grid::forceNext(int p, string pc) {

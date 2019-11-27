@@ -26,6 +26,8 @@ class Cell: public Subject {
 		void setbl(bool b);
 		int getrow() const;
 		int getcol() const;
+		void makeblind();
+		void removeblind();
 };
 
 #endif
