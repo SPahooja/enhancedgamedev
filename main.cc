@@ -66,17 +66,14 @@ int main(int argc, char *argv[]) {
     		if (coms.size()==0) {
     		}
    		else if ((coms[0]=="right")||(coms[0]=="left")||(coms[0]=="down")) {
-	    		for (int i=0; i < coms.size(); i++) {
-			    	g.moveBlock((pl%2)+1, coms[0]);
-	   	 	}
+			g.moveBlock((pl%2)+1, coms[0], coms.size());
 			int lev = g.getLevel((pl%2)+1);
 			if (lev>=3) {
-				g.moveBlock((pl%2)+1, "down");
+				g.moveBlock((pl%2)+1, "down", 1);
 			}
 			bool h = g.getHeavy((pl%2)+1);
 			if ((h)&&(coms[0]!="down")) {
-				g.moveBlock((pl%2)+1, "down");
-				g.moveBlock((pl%2)+1, "down");
+				g.moveBlock((pl%2)+1, "down", 2);
 			}
 	    		cout << g;
 				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
@@ -87,7 +84,7 @@ int main(int argc, char *argv[]) {
 	    		}
 			int lev = g.getLevel((pl%2)+1);
                         if (lev>=3) {
-                                g.moveBlock((pl%2)+1, "down");
+                                g.moveBlock((pl%2)+1, "down", 1);
                         }
 	    		cout << g;
 				cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
@@ -98,7 +95,7 @@ int main(int argc, char *argv[]) {
 			}
 			int lev = g.getLevel((pl%2)+1);
                         if (lev>=3) {
-                                g.moveBlock((pl%2)+1, "down");
+                                g.moveBlock((pl%2)+1, "down", 1);
                         }
 			cout << g;
 			cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
@@ -158,9 +155,9 @@ int main(int argc, char *argv[]) {
     		}
 		else if ((coms[0]=="levelup")||(coms[0]=="leveldown")) {
 			bool st = coms[0]=="levelup"?true:false;
-			for (int i=0; i < coms.size(); i++) {
-				g.chngLevel((pl%2)+1, st);
-			}
+			g.chngLevel((pl%2)+1, st, coms.size());
+			cout << g;
+                        cout  << "PLAYER " << (pl%2)+1 << "'S TURN"  << endl;
 		}
 		else if (coms[0]=="norandom") {
 			if (seq) {
@@ -217,5 +214,6 @@ int main(int argc, char *argv[]) {
 		  cout << "PLAYER " << x << " HAS WON THE GAME!" << endl;
 	  }
   }  // Any I/O failure quits
+  catch (...) {}
 }
 

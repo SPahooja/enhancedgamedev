@@ -12,7 +12,7 @@ class Piece {
 		char disp;
 		std::vector<Cell*> ptr;
 	public:
-		void movepos(std::string dir);
+		void movepos(std::string dir, int c);
 		void rowdel(int j);
 		void drop();
 		virtual void transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) = 0;

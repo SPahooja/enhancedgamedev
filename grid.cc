@@ -198,12 +198,12 @@ void  Grid::rotateBlock(int p, bool clock) {
 	}
 }
 
-void Grid::moveBlock(int p, string dir) {
+void Grid::moveBlock(int p, string dir, int c) {
 	if (p==1) {
-		move1[move1.size()-1]->movepos(dir);
+		move1[move1.size()-1]->movepos(dir, c);
 	}
 	else {
-		move2[move2.size()-1]->movepos(dir);
+		move2[move2.size()-1]->movepos(dir, c);
 	}
 }
 
@@ -274,17 +274,33 @@ int Grid::dropBlock(int p) {
 	return rows;
 }
 
-void Grid::chngLevel(int p, bool up) {
+void Grid::chngLevel(int p, bool up, int c) {
 	if (p==1) {
-		if (((lev1==4)&&up)||((lev1==0)&&(!up))) { return; }
+		bool cont = true;
+		while ((cont)&&(c>0)) {
+			if (((lev1==4)&&up)||((lev1==0)&&(!up))) {
+				cont = false; 
+			}
+			else {
+				lev1 = up?lev1+1:lev1-1;
+			}
+			--c;
+		}
 		delete lp1;
-		lev1= up?lev1+1:lev1-1;
 		lp1 = makeLevel(lev1, p);
 	}
 	else {
-		if (((lev2==4)&&up)||((lev2==0)&&(!up))) { return; }
+		bool cont = true;
+		while ((cont)&&(c>0)) {
+			if (((lev2==4)&&up)||((lev2==0)&&(!up))) {
+				cont = false;
+			}
+			else {
+				lev2 = up?lev2+1:lev2-1;
+			}
+			--c;
+		}
 		delete lp2;
-		lev2= up?lev2+1:lev2-1;
 		lp2 = makeLevel(lev2, p);
 	}
 	this->gd->updateStats(lev1, curscore1, highscore1, lev2, curscore2, highscore2);

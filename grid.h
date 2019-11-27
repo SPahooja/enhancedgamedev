@@ -49,10 +49,10 @@ class Grid {
 	public:
 		Grid(int l1=0, int l2=0, bool grph=true, std::string scf1="sequence1.txt", std::string scf2="sequence2.txt", int seed=0);
 		void nextBlock(int p);
-		void moveBlock(int p, std::string dir);
+		void moveBlock(int p, std::string dir, int c);
 		void rotateBlock(int p, bool clock);
 		int dropBlock(int p);
-		void chngLevel(int p, bool up);
+		void chngLevel(int p, bool up, int c);
 		void chngRandom(int p, std::string fl);
 		int getLevel(int p);
 		int getWinner();
