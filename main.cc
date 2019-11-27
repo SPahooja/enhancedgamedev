@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
   	vector<string> coms;
  	g.nextBlock(1);
   	g.nextBlock(2);
-  	system("clear");
+  	cout << "\033c" << endl;
   	cout << g;
   	cout << "PLAYER 1'S TURN" << endl;
   	int pl = 0;
@@ -112,6 +112,7 @@ int main(int argc, char *argv[]) {
 	    				}
 				}
 				if (x>1) {
+					cout << g;
 					cout << "PLAYER " << (pl%2)+1 << " HAS ACTIVATED A SPECIAL ACTION!" << endl;
 					cout << "PLEASE ENTER force, heavy, or blind" << endl;
 					if (seq) {

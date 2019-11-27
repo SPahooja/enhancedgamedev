@@ -134,7 +134,7 @@ void repeatprinter(ostream &out, string s, int rep, int spc) {
 }
 
 ostream &operator<<(ostream &out, const Grid &g) {
-	system("clear");
+	out << "\033c" << endl;
 	out << "Level: " << g.lev1 << "        Level: " << g.lev2 << endl;
 	out << "Score: " << g.curscore1 << "        Score: " << g.curscore2 << endl;
 	out << "H Scr: " << g.highscore1 << "        H Scr: " << g.highscore2 << endl;
