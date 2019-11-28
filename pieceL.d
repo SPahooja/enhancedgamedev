@@ -1,1 +1,0 @@
-pieceL.o: pieceL.cc pieceL.h piece.h cell.h subject.h state.h observer.h
