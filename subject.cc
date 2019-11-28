@@ -1,14 +1,12 @@
 #include "subject.h"
+#include <iostream>
+using namespace std;
 
 void Subject::attach(Observer *o) {
   	observers.emplace_back(o);
 }
 
-void Subject::clear() {
-	for (int i=0; i<observers.size(); i++) {
-		observers.pop_back();
-	}
-}
+void Subject::clear() { observers.clear(); }
 
 void Subject::notifyObservers() {
   for (auto &ob : observers) ob->notify(*this);

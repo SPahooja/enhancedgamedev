@@ -397,8 +397,8 @@ void Grid::restartGame(int l1, int l2) {
         for (int j=move2.size()-1; j>=0; j--) {
 		move2.pop_back();
         }
-	(this->nxtpc1).reset(lp1->nextPiece(nxtmap1));
-        (this->nxtpc2).reset(lp2->nextPiece(nxtmap2));
+	(this->nxtpc1).reset(nullptr);
+        (this->nxtpc2).reset(nullptr);
 	(this->td).reset(new TextDisplay);
 	vector<Observer*> disp;
 	disp.push_back(td.get());
@@ -430,6 +430,8 @@ void Grid::restartGame(int l1, int l2) {
 	this->lev2 = l2;
         (this->lp1).reset(makeLevel(lev1, 1));
         (this->lp2).reset(makeLevel(lev2, 2));
+	(this->nxtpc1).reset(lp1->nextPiece(nxtmap1));
+        (this->nxtpc2).reset(lp2->nextPiece(nxtmap2));
         this->curscore1 = 0;
         this->curscore2 = 0;
         this->uns1 = 0;
