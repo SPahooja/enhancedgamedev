@@ -18,8 +18,8 @@ GraphicDisplay::GraphicDisplay(int lev1, int hscr1, int lev2, int hscr2) {
 	xw.drawString(290, 415, "Next:", 0);
 	xw.fillRectangle(220, 0, 60, 500, 1); //Player separator
 	this->updateStats(lev1, 0, hscr1, lev2, 0, hscr2);
-	char pcs[9] = {' ', '?', 'I', 'O', 'T', 'Z', 'S', 'J', 'L'};
-	for (int i=0; i<9; i++) {
+	char pcs[10] = {' ', '?', 'I', 'O', 'T', 'Z', 'S', 'J', 'L', '*'};
+	for (int i=0; i<10; i++) {
 		colourmap[pcs[i]] = i;
 	}
 }
