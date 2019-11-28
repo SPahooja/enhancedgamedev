@@ -10,7 +10,8 @@ class Subject {
  protected:
   void setState(State newS);
  public:
-  void attach(Observer *o);  
+  void attach(Observer *o);
+  void clear();  
   void notifyObservers();
   State getState() const;
 };
