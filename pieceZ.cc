@@ -50,7 +50,7 @@ void PieceZ::rotate(bool cl) {
         }
     } else if ((row1 - row4 == 2) || (row1 - row4 == -2)) {
         vert = true;
-        if ((col1 > 9) || (col4 < 1)) {
+        if ((col1 > 9)) {
             return;
         }
     }
