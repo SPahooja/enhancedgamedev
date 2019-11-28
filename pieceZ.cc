@@ -5,15 +5,15 @@
 
 using namespace std;
 
-PieceZ::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
+PieceZ::PieceZ(vector<vector<unique_ptr<Cell>>> &t) {              // Creating at top-left
     this->disp = 'Z';
     for (int i = 0; i <= 1; ++i) {
-        (this->ptr).push_back(t[2][i]);
+        (this->ptr).push_back(t[2][i].get());
         t[2][i]->setdisp('Z');
         t[2][i]->setbl(true);
     }
     for (int i = 1; i <= 2; ++i) {
-        (this->ptr).push_back(t[3][i]);
+        (this->ptr).push_back(t[3][i].get());
         t[3][i]->setdisp('Z');
         t[3][i]->setbl(true);
     }
@@ -21,15 +21,15 @@ PieceZ::PieceZ(vector<vector<Cell*>> &t) {              // Creating at top-left
 
 PieceZ::~PieceZ() {}
 
-void PieceZ::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+void PieceZ::transferPiece(std::vector<std::vector<unique_ptr<Cell>>> &src, std::vector<std::vector<unique_ptr<Cell>>> &des) {
 	for (int i=0; i<4; i++) {
 		ptr[i]->setdisp(' ');
 		ptr[i]->setbl(false);
 	}
-	ptr[0] = des[2][0];
-	ptr[1] = des[2][1];
-	ptr[2] = des[3][1];
-	ptr[3] = des[3][2];
+	ptr[0] = des[2][0].get();
+	ptr[1] = des[2][1].get();
+	ptr[2] = des[3][1].get();
+	ptr[3] = des[3][2].get();
 	for (int i=0; i<4; i++) {
 		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		ptr[i]->setdisp('Z');

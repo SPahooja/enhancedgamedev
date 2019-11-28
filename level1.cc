@@ -7,7 +7,7 @@ LevelOne::LevelOne(int s): seed{s} {
 	srand(s);
 }
 
-Piece* LevelOne::nextPiece(vector<vector<Cell*>> &t) {
+Piece* LevelOne::nextPiece(vector<vector<unique_ptr<Cell>>> &t) {
 	int pos = rand()%12+1;
 	Piece *pc = nullptr;
 	if (pos==1) {

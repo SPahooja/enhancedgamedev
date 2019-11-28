@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 class Cell;
 
@@ -15,7 +16,7 @@ class Piece {
 		void movepos(std::string dir, int c);
 		void rowdel(int j);
 		void drop();
-		virtual void transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) = 0;
+		virtual void transferPiece(std::vector<std::vector<std::unique_ptr<Cell>>> &src, std::vector<std::vector<std::unique_ptr<Cell>>> &des) = 0;
 		virtual void rotate(bool cl) = 0;
 		virtual ~Piece() = 0;
 };

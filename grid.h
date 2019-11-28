@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <memory>
 
 class Cell;
 class Piece;
@@ -13,35 +14,35 @@ class TextDisplay;
 class GraphicDisplay;
 
 class Grid {
+	//Display
+	std::unique_ptr<GraphicDisplay> gd;
+	std::unique_ptr<TextDisplay> td;
 	//Player 1 Features
-	std::vector<std::vector<Cell*>> map1;
-	std::vector<Piece*> move1;
-	Level *lp1;
+	std::vector<std::vector<std::unique_ptr<Cell>>> map1;
+	std::vector<std::unique_ptr<Piece>> move1;
+	std::unique_ptr<Level> lp1;
 	int curscore1;
 	int lev1;
-	Piece* nxtpc1;
-	std::vector<std::vector<Cell*>> nxtmap1;
+	std::vector<std::vector<std::unique_ptr<Cell>>> nxtmap1;
+	std::unique_ptr<Piece> nxtpc1;
 	int uns1;
 	bool bl1;
 	bool hv1;
 	std::string scf1;
 	int highscore1;
 	//Player 2 Features
-	std::vector<std::vector<Cell*>> map2;
-	std::vector<Piece*> move2;
-	Level *lp2;
+	std::vector<std::vector<std::unique_ptr<Cell>>> map2;
+	std::vector<std::unique_ptr<Piece>> move2;
+	std::unique_ptr<Level> lp2;
 	int curscore2;
 	int lev2;
-	Piece* nxtpc2;
-	std::vector<std::vector<Cell*>> nxtmap2;
+	std::vector<std::vector<std::unique_ptr<Cell>>> nxtmap2;
+	std::unique_ptr<Piece> nxtpc2;
 	int uns2;
 	bool bl2;
 	bool hv2;
 	std::string scf2;
 	int highscore2;
-	//Display
-	GraphicDisplay *gd;
-	TextDisplay *td;
 	//Randomness Tools
 	int seed;
 	private:

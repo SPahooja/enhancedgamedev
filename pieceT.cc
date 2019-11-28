@@ -4,32 +4,32 @@
 #include <vector>
 using namespace std;
 
-PieceT::PieceT(vector<vector<Cell*>> &t) {
+PieceT::PieceT(vector<vector<unique_ptr<Cell>>> &t) {
         this->disp = 'T';
         for (int i=0; i < 3; i++) {
-                (this->ptr).push_back(t[2][i]);
+                (this->ptr).push_back(t[2][i].get());
                 t[2][i]->setdisp('T');
                 t[2][i]->setbl(true);
         }
-	(this->ptr).push_back(t[3][1]);
+	(this->ptr).push_back(t[3][1].get());
 	t[3][1]->setdisp('T');
 	t[3][1]->setbl(true);
 }
 
 PieceT::~PieceT() {}
 
-void PieceT::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+void PieceT::transferPiece(std::vector<std::vector<unique_ptr<Cell>>> &src, std::vector<std::vector<unique_ptr<Cell>>> &des) {
 	for (int i=0; i<4; i++) {
 		(this->ptr)[i]->setdisp(' ');
 		(this->ptr)[i]->setbl(false);
 	}
 	for (int i=0; i < 3; i++) {
-		(this->ptr)[i] = des[2][i];
+		(this->ptr)[i] = des[2][i].get();
 		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		(this->ptr)[i]->setdisp('T');
 		(this->ptr)[i]->setbl(true);
 	}
-	(this->ptr)[3] = des[3][1];
+	(this->ptr)[3] = des[3][1].get();
 	if (ptr[3]->getbl()) { throw invalid_argument("Game Over"); }
 	(this->ptr)[3]->setdisp('T');
 	(this->ptr)[3]->setbl(true);

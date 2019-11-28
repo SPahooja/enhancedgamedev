@@ -5,21 +5,21 @@
 #include <vector>
 using namespace std;
 
-PieceI::PieceI(vector<vector<Cell*>> &t) {
+PieceI::PieceI(vector<vector<unique_ptr<Cell>>> &t) {
 	this->disp = 'I';
 	for (int i=0; i < 4; i++) {
-		(this->ptr).push_back(t[3][i]);
+		(this->ptr).push_back(t[3][i].get());
 		t[3][i]->setdisp('I');
 		t[3][i]->setbl(true);
 	}
 }
 
-void PieceI::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des) {
+void PieceI::transferPiece(std::vector<std::vector<unique_ptr<Cell>>> &src, std::vector<std::vector<unique_ptr<Cell>>> &des) {
 	for (int i=0; i < 4; i++) {
 		(this->ptr)[i]->setdisp(' ');
 		(this->ptr)[i]->setbl(false);
 		if (des[3][i]->getbl()) { throw invalid_argument("Game Over"); }
-		(this->ptr)[i] = des[3][i];
+		(this->ptr)[i] = des[3][i].get();
 		(this->ptr)[i]->setdisp('I');
 		(this->ptr)[i]->setbl(true);
 	}

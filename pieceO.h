@@ -6,9 +6,9 @@
 
 class PieceO: public Piece {
 	public:
-		PieceO(std::vector<std::vector<Cell*>> &t);
-		void transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des);
-		void rotate(bool cl);
+		PieceO(std::vector<std::vector<std::unique_ptr<Cell>>> &t);
+		void transferPiece(std::vector<std::vector<std::unique_ptr<Cell>>> &src, std::vector<std::vector<std::unique_ptr<Cell>>> &des) override;
+		void rotate(bool cl) override;
 		~PieceO();
 };
 

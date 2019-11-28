@@ -12,7 +12,7 @@ class LevelZero: public Level {
 	std::string fl;
 	public:
 		LevelZero(std::string s);
-		Piece* nextPiece(std::vector<std::vector<Cell*>> &t) override;
+		Piece* nextPiece(std::vector<std::vector<std::unique_ptr<Cell>>> &t) override;
 };
 
 #endif

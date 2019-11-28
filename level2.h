@@ -17,7 +17,7 @@ class LevelTwo: public Level {
 	int seed;
 	public:
 		LevelTwo(int s=0);
-		Piece* nextPiece(std::vector<std::vector<Cell*>> &t) override;
+		Piece* nextPiece(std::vector<std::vector<std::unique_ptr<Cell>>> &t) override;
 };
 
 #endif

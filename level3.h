@@ -22,7 +22,7 @@ class LevelThree: public Level {
         int len;
 	public:
 		LevelThree(int s=0, std::string file="");
-		Piece* nextPiece(std::vector<std::vector<Cell*>> &t) override;
+		Piece* nextPiece(std::vector<std::vector<std::unique_ptr<Cell>>> &t) override;
 };
 
 #endif

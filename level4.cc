@@ -19,7 +19,7 @@ LevelFour::LevelFour(int s, string file) {
         }
 }
 
-Piece* LevelFour::nextPiece(vector<vector<Cell*>> &t) {
+Piece* LevelFour::nextPiece(vector<vector<unique_ptr<Cell>>> &t) {
         int rd = 0;
         string mv = "";
         if (!(random)) {

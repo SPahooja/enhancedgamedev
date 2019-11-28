@@ -24,7 +24,7 @@ LevelZero::LevelZero(string s) {
 	while (file1 >> p) { ++len; }
 }
 
-Piece* LevelZero::nextPiece(vector<vector<Cell*>> &t) {
+Piece* LevelZero::nextPiece(vector<vector<unique_ptr<Cell>>> &t) {
 	string piece;
 	ifstream file1{fl};
 	for (int i=0; i<=pos; i++) {

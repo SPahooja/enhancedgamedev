@@ -19,7 +19,7 @@ LevelThree::LevelThree(int s, string file) {
 	}
 }
 
-Piece* LevelThree::nextPiece(vector<vector<Cell*>> &t) {
+Piece* LevelThree::nextPiece(vector<vector<unique_ptr<Cell>>> &t) {
 	int rd = 0;
 	string mv = "";
 	if (!(random)) {

@@ -7,7 +7,7 @@ LevelTwo::LevelTwo(int s): seed{s} {
 	srand(s);
 }
 
-Piece* LevelTwo::nextPiece(vector<vector<Cell*>> &t) {
+Piece* LevelTwo::nextPiece(vector<vector<unique_ptr<Cell>>> &t) {
 	int pos = rand()%7+1;
 	Piece *pc = nullptr;
 	if (pos==1) {

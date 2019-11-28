@@ -4,27 +4,27 @@
 #include <vector>
 using namespace std;
 
-PieceL::PieceL(vector<vector<Cell*>> &t) {
+PieceL::PieceL(vector<vector<unique_ptr<Cell>>> &t) {
     	this->disp = 'L';
-	(this->ptr).push_back(t[2][2]);
-	(this->ptr).push_back(t[3][2]);
-	(this->ptr).push_back(t[3][1]);
-	(this->ptr).push_back(t[3][0]);
+	(this->ptr).push_back(t[2][2].get());
+	(this->ptr).push_back(t[3][2].get());
+	(this->ptr).push_back(t[3][1].get());
+	(this->ptr).push_back(t[3][0].get());
 	for (int i=0; i < 4; i++) {
 		ptr[i]->setdisp('L');
 		ptr[i]->setbl(true);
 	}
 }
 
-void PieceL::transferPiece(std::vector<std::vector<Cell*>> &src, std::vector<std::vector<Cell*>> &des){
+void PieceL::transferPiece(std::vector<std::vector<unique_ptr<Cell>>> &src, std::vector<std::vector<unique_ptr<Cell>>> &des){
 	for (int i=0; i<4; i++) {
 		ptr[i]->setdisp(' ');
 		ptr[i]->setbl(false);
 	}
-	ptr[0] = des[2][2];
-	ptr[1] = des[3][2];
-	ptr[2] = des[3][1];
-	ptr[3] = des[3][0];
+	ptr[0] = des[2][2].get();
+	ptr[1] = des[3][2].get();
+	ptr[2] = des[3][1].get();
+	ptr[3] = des[3][0].get();
 	for (int i=0; i<4; i++) {
 		if (ptr[i]->getbl()) { throw invalid_argument("Game Over"); }
 		ptr[i]->setdisp(this->disp);
