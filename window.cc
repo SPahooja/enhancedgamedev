@@ -124,7 +124,7 @@ void Xwindow::drawString(int x, int y, string msg, int colour) {
 	
 	printMessage(x, y, msg, colour, *f); 
 
-	delete f;
+	XFreeFont(d, f);
 }
 
 
@@ -136,7 +136,7 @@ void Xwindow::drawStringFont(int x, int y, string msg, string font, int colour) 
 	}
 
 	printMessage(x, y, msg, colour, *f);
-	delete f;
+	XFreeFont(d, f);
 }
 
 void Xwindow::drawBigString(int x, int y, string msg, int colour) {

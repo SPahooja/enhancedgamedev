@@ -183,26 +183,11 @@ int main(int argc, char *argv[]) {
 			seq = true;
 		}
 		else if (coms[0]=="restart") {
-			while (true) {
-				cout<< "Are you sure you want to restart? (Y/N)" << endl;
-				if (seq) {
-					if (!(file >> cmd)) { seq = false; }
-				}
-				if (!seq) {
-					cin >> cmd;
-				}
-				if (cmd == "Y" || cmd =="y"){
-					g.restartGame(lev1, lev2);
-					g.nextBlock(1);
-					g.nextBlock(2);
-					cout << g;
-					cout << "PLAYER 1'S TURN" << endl;
-					break;
-				}
-				else if (cmd == "N" || cmd == "n"){
-					break;
-				}
-			}
+			g.restartGame(lev1, lev2);
+			g.nextBlock(1);
+			g.nextBlock(2);
+			cout << g;
+			cout << "PLAYER 1'S TURN" << endl;
 		}
   	}
   }
